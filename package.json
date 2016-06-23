@@ -1,0 +1,16 @@
+{
+  "name": "project-scaffold",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cp node_modules/normalize.css/normalize.css lib/_normalize.css",
+    "watch:css": "sass --watch src/scss:build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "normalize.css": "^4.1.1"
+  }
+}
