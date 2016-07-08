@@ -1,0 +1,61 @@
+.gallery {
+  height: 10em;
+  overflow: scroll;
+  white-space: nowrap;
+  text-align: center; }
+
+.gallery > img {
+  display: inline-block;
+  height: 100%;
+  margin-right: 1em;
+  opacity: .5;
+  transition: all ease 0.5s;
+  border: 2px solid white; }
+
+.gallery > img:hover {
+  opacity: 1;
+  transform: scale(1.4); }
+
+.header {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black; }
+
+.full {
+  padding-top: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black; }
+
+.header h3 {
+  font-family: Georgia;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+  margin-left: 1em; }
+
+.full-full {
+  height: auto;
+  border: none;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  left: 0;
+  right: 0; }
+
+.app {
+  height: 100%;
+  color: black;
+  font-size: 50px;
+  text-align: center;
+  font-family: cursive;
+  background-color: black; }
+
+body {
+  background-color: black; }
+
+/*# sourceMappingURL=main.css.map */

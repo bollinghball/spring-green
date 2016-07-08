@@ -1,0 +1,21 @@
+.gallery {
+	height: 10em;
+	overflow: scroll;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.gallery > img {
+	display: inline-block;
+	height: 100%;
+	margin-right: 1em;
+	opacity: .5;
+	transition: all ease 0.5s;
+	border: 2px solid white;
+}
+
+.gallery > img:hover {
+	opacity: 1;
+	transform: scale(1.4);
+	
+}
