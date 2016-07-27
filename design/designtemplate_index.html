@@ -26,7 +26,7 @@
 		header {
 			width: 100%;
 			height: 100px;
-			background-color: blue;
+			border-bottom: 2px solid #262322;
 
 		}
 
@@ -44,9 +44,12 @@
 		.card {
 			width: 100%;
 			height: 100%;
-			border: 1px solid black;
+			border: 1px solid #262322;
 			transform-style: preserve-3d;
 			transition: transform 1s;
+			-webkit-box-shadow: 0px 0px 9px 1px rgba(38,35,34,0.4);
+			-moz-box-shadow: 0px 0px 9px 1px rgba(38,35,34,0.4);
+			box-shadow: 0px 0px 9px 1px rgba(38,35,34,0.4);
   		}
 
   		.card.flipped {
@@ -66,11 +69,13 @@
 			backface-visibility: hidden;
 			box-sizing: border-box;
 			padding: 10px;
+			background-color: white;
 		}
 
 		.card .back {
 			text-align: left;
 			transform: rotateY( 180deg );
+			background-color: #9BD09C;
 		}
 
 		.plant-title {
@@ -89,6 +94,11 @@
 		.add-plant {
 			float: right;
 			margin: 20px;
+			background-color: #C4493F;
+			color: white;
+			border-radius: 10%;
+			padding: 10px;
+			font-size: 18px;
 		}
 
 		.cf:after {
@@ -97,12 +107,17 @@
 			clear: both;
 		}
 
+		.water-plant {
+			border-bottom: 1px solid #E8FFEA;
+		}
+
 		.water-plant > h3 {
 			display: inline-block;
 		}
 
 		main {
-			border-left: 1px solid black;
+			border-left: 1px solid #262322;
+			background-color: #E8FFEA;
 		}
 
 		.hide-schedule {
@@ -112,8 +127,57 @@
 			padding: 0;
 		}
 
+		.water-button, .water-all {
+			border-color: #C4493F;
+			color: #C4493F;
+			padding: 5px 15px;
+			background-color: white;
+			border-radius: 10%;
+			float:right;
+			margin: 20px 0;
+		}
+
 		.watered {
 			border-radius: 50%;
+		}
+
+		aside.column-1-of-4, aside.column-md-1-of-3 {
+			background-color: #4F9D69;
+			height: 100vh;
+			padding: 20px;
+		}
+
+		@media (max-width: 1100px){
+			.column-lg-1-of-3 {
+				width: 33.3%;
+				box-sizing: border-box;
+				padding: 10px;
+				float: left;				
+			}
+		}
+
+		@media (max-width: 850px) {
+			.column-md-1-of-2 {
+				width: 50%;
+				box-sizing: border-box;
+				padding: 10px;
+				float: left;				
+			}
+
+			.column-md-1-of-3 {
+				width: 33.3%;
+				box-sizing: border-box;
+				padding: 10px;
+				float: left;				
+			}
+
+			.column-md-2-of-3 {
+				width: 66.6%;
+				box-sizing: border-box;
+				padding: 10px;
+				float: left;				
+			}
+
 		}
 	</style>
 </head>
@@ -127,30 +191,30 @@
 				<img src="public/assets/images/loginicon.svg">
 			</div>
 		</header>
-		<aside class="column-1-of-4">
+		<aside class="column-1-of-4 column-md-1-of-3">
 			<h2>Watering Schedule</h2>
-			<button class="water-all">water all</button>
-			<div class="water-plant">
+			<button class="water-all cf">water all</button>
+			<div class="water-plant cf">
 				<h3>Laceleaf (Living Room)</h3>
 				<button class="water-button">water</button>
 			</div>
-			<div class="water-plant">
+			<div class="water-plant cf">
 				<h3>Crepe Myrtle</h3>
 				<button class="water-button">water</button>
 			</div>
-			<div class="water-plant">
+			<div class="water-plant cf">
 				<h3>Porch Daisies</h3>
 				<button class="water-button">water</button>
 			</div>
-			<div class="water-plant">
+			<div class="water-plant cf">
 				<h3>Lemon Tree</h3>
 				<button class="water-button">water</button>
 			</div>
 		</aside>
-		<main class="column-3-of-4">
+		<main class="column-3-of-4 column-md-2-of-3">
 			<button class="add-plant">Add A Plant</button>
 			<h2 class="cf">My Plants</h2>
-			<div class="column-1-of-4 container">
+			<div class="column-1-of-4 column-lg-1-of-3 column-md-1-of-2 container">
 				<div class="card">
 					<div class="front">
 						<img class="plant-image" src="">
@@ -196,7 +260,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="column-1-of-4 container">
+			<div class="column-1-of-4 column-lg-1-of-3 column-md-1-of-2 container">
 				<div class="card">
 					<div class="front">
 						<img class="plant-image" src="">
@@ -242,7 +306,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="column-1-of-4 container">
+			<div class="column-1-of-4 column-lg-1-of-3 column-md-1-of-2 container">
 				<div class="card">
 					<div class="front">
 						<img class="plant-image" src="">
@@ -288,7 +352,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="column-1-of-4 container">
+			<div class="column-1-of-4 column-lg-1-of-3 column-md-1-of-2 container">
 				<div class="card">
 					<div class="front">
 						<img class="plant-image" src="">
@@ -334,7 +398,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="column-1-of-4 container">
+			<div class="column-1-of-4 column-lg-1-of-3 column-md-1-of-2 container">
 				<div class="card">
 					<div class="front">
 						<img class="plant-image" src="">
@@ -380,7 +444,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="column-1-of-4 container">
+			<div class="column-1-of-4 column-lg-1-of-3 column-md-1-of-2 container">
 				<div class="card">
 					<div class="front">
 						<img class="plant-image" src="">
