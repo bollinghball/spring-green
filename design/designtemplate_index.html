@@ -38,7 +38,7 @@
 		.container {
 		  position: relative;
 		  perspective: 800px;
-		  height: 350px;
+		  height: 400px;
 		}
 
 		.card {
@@ -96,6 +96,25 @@
 			display: table;
 			clear: both;
 		}
+
+		.water-plant > h3 {
+			display: inline-block;
+		}
+
+		main {
+			border-left: 1px solid black;
+		}
+
+		.hide-schedule {
+			visibility: hidden;
+			width: 0;
+			transition: visibility 0s linear 300ms, opacity 300ms, width 1s;
+			padding: 0;
+		}
+
+		.watered {
+			border-radius: 50%;
+		}
 	</style>
 </head>
 <body>
@@ -110,7 +129,7 @@
 		</header>
 		<aside class="column-1-of-4">
 			<h2>Watering Schedule</h2>
-			<button class="water-button">water all</button>
+			<button class="water-all">water all</button>
 			<div class="water-plant">
 				<h3>Laceleaf (Living Room)</h3>
 				<button class="water-button">water</button>
@@ -414,6 +433,16 @@
 	<script type="text/javascript">
 		$('.card').click(function(){
  		 $(this).toggleClass('flipped');
+		});
+
+		$('.water-all').click(function(){
+			$('aside').addClass('hide-schedule');
+		});
+
+		$('.water-button').click(function(){
+			$(this).addClass('watered');
+			$(this).html('&#10003');
+			$(this).parent().fadeOut(1200);
 		});
 	</script>
 </body>
