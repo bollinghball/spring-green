@@ -1,0 +1,7 @@
+hi: 0.05
+med: 0.025
+low: 0.007
+
+function plantHealth (timeSinceLastWatering, averageTemp, moistureUse) {
+	return 100 - (timeSinceLastWatering * averageTemp * moistureUse);
+}

@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": "410dee6d-9976-4bc6-bef7-0672ada4f2a0",
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "id": "99a482fb-a54a-4ed1-baae-546b114c5c5d",
+      "username": "bolling",
+      "password": "bolling",
+      "email": "gmail@gmail.com",
+      "phone": "8035555555"
+    }
+  ],
+  "plants": []
+}
