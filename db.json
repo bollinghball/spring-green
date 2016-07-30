@@ -3,7 +3,9 @@
     {
       "id": "410dee6d-9976-4bc6-bef7-0672ada4f2a0",
       "username": "admin",
-      "password": "admin"
+      "password": "admin",
+      "email": "blah",
+      "phone": "123"
     },
     {
       "id": "99a482fb-a54a-4ed1-baae-546b114c5c5d",
@@ -20,5 +22,18 @@
       "phone": "8439066465"
     }
   ],
-  "plants": []
+  "plants": [
+    {
+      "id": "90ecb340-abe9-4993-bef5-f61dee971d2d",
+      "userId": "410dee6d-9976-4bc6-bef7-0672ada4f2a0",
+      "name": "patrick",
+      "timeLastWatered": 1469809653298
+    },
+    {
+      "id": "eec5cf59-bd80-4e7f-9827-437658dabb1d",
+      "userId": "410dee6d-9976-4bc6-bef7-0672ada4f2a0",
+      "name": "rudolph",
+      "timeLastWatered": 1469819708521
+    }
+  ]
 }

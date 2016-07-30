@@ -32,9 +32,12 @@ module.exports = {
     },
 
     logout: function () {
+        var _this = this;
         $.ajax('/auth/login', {
             method: 'DELETE',
             success: function () {
+                _this.userModel.loggedIn = false;
+                _this.userModel.clear();
                 Backbone.history.navigate('login', { trigger: true });
             },
             error: function () {

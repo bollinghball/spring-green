@@ -24,14 +24,15 @@ module.exports = Backbone.View.extend({
 		this.$('.plant-list-region')
 			.append(this.plantListView.$el);
 
-		// this.PlantWaterView.render();
+		this.plantWaterView.render();
 
-		// this.$('.plant-water-region')
-		// 	.append(this.plantWaterView.$el);
+		this.$('.plant-water-region')
+			.append(this.plantWaterView.$el);
 	},
 
 	template: function () {
 		return `
+			<div class="plant-water-region"></div>
 			<div class="plant-list-region"></div>
 			<button class="add-plant-button">Add A Plant</button>
 		`;
