@@ -17,16 +17,18 @@
   ],
   "plants": [
     {
-      "id": "90ecb340-abe9-4993-bef5-f61dee971d2d",
+      "id": "b8bc4905-32e1-4224-ae46-0f1200cac84c",
       "userId": "410dee6d-9976-4bc6-bef7-0672ada4f2a0",
-      "name": "patrick",
-      "timeLastWatered": 1469809653298
+      "plantDBId": 44646,
+      "name": "josie",
+      "timeLastWatered": 1469902479705
     },
     {
-      "id": "eec5cf59-bd80-4e7f-9827-437658dabb1d",
+      "id": "6e15d9c4-2399-4d31-bd7c-d770c5baefa6",
       "userId": "410dee6d-9976-4bc6-bef7-0672ada4f2a0",
-      "name": "rudolph",
-      "timeLastWatered": 1469819708521
+      "plantDBId": 44646,
+      "name": "willem",
+      "timeLastWatered": 1469902479705
     }
   ]
 }

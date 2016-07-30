@@ -1,5 +1,5 @@
 var Backbone = require('backbone');
-
+var $ = require('jquery');
 var auth = require('./authController');
 
 module.exports = Backbone.View.extend({
@@ -22,16 +22,26 @@ module.exports = Backbone.View.extend({
             <input id="username" type="text" name="username">
             <label for="password">Password</label>
             <input id="password" type="text" name="password">
+            <div id="error"></div>
             <button class="login-button">Login</button>
             <a href="#/register">Register</a>
         `;
     },
 
     onLoginClick: function () {
-        this.trigger('submit', {
-            username: this.$('#username').val(),
-            password: this.$('#password').val()
-        });
+        var username  = this.$('#username').val();
+        var password = this.$('#password').val();
+
+        if (!username || !password) {
+            $('#error').html('Both fields are required.');
+        }
+
+        if (username && password) {
+            this.trigger('submit', {
+                username: username,
+                password: password
+            });
+        }
     }
 
 });
