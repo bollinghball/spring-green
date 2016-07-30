@@ -13,8 +13,9 @@ module.exports = Backbone.View.extend({
 	},
 
 	initialize: function () {
+		var _this = this;
 		this.plantDBSearchView = new PlantDBSearchView();
-		this.plantDBSearchView.on('select', this.addPlant.bind(this));
+		this.plantDBSearchView.on('select', _this.addPlant.bind(this));
 	},
 
 	render: function () {

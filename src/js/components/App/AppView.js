@@ -1,4 +1,5 @@
 var Backbone = require('backbone');
+var NavView = require('../Nav/NavView');
 
 module.exports = Backbone.View.extend({
 
@@ -6,17 +7,23 @@ module.exports = Backbone.View.extend({
 
     className: 'app',
 
-    initialize: function () {
+    initialize: function (options) {
         this.pageView = null;
+        this.navView = new NavView({
+            model: options.userModel
+        });
         Backbone.on('app:showView', this.show.bind(this));
     },
 
     render: function () {
         this.$el.html(this.template());
+        this.navView.render();
+        this.$el.find('.nav-region').append(this.navView.el);
     },
 
     template: function () {
         return `
+            <div class="nav-region"></div>
             <div class="page-region"></div>
         `;
     },

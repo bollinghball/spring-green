@@ -11,9 +11,9 @@ var PlantDBListView = Backbone.View.extend({
 	className: 'db-list',
 
 	initialize: function () {
-		// ensure onListItemClick is bound to this instance
+		this.render = this.render.bind(this);
 		this.onListItemClick = this.onListItemClick.bind(this);
-		this.collection.on('update', this.render.bind(this));
+		this.collection.on('update', this.render);
 	},
 
 	render: function () {

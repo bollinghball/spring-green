@@ -7,6 +7,11 @@ var PlantListView = Backbone.View.extend ({
 
 	className: 'plant-list',
 
+	initialize: function () {
+		this.render = this.render.bind(this);
+		this.listenTo(this.collection, 'update', this.render);
+	},
+
 	render: function () {
 		var _this = this;
 

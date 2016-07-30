@@ -2,6 +2,7 @@ var Backbone = require('backbone');
 
 var auth = require('../Auth/authController');
 var home = require('../Home/homeController');
+var settings = require('../Settings/settingsController');
 
 module.exports = Backbone.Router.extend({
 
@@ -12,7 +13,8 @@ module.exports = Backbone.Router.extend({
         'logout': 'logout',
         'register': 'register',
         'home': 'home',
-        'plants/create': 'createPlant'
+        'plants/create': 'createPlant',
+        'settings': 'settings'
     },
 
     login: function () {
@@ -37,6 +39,12 @@ module.exports = Backbone.Router.extend({
         auth.check(function () {
             home.showCreate();
         });
+    },
+
+    settings: function () {
+        auth.check(function () {
+            settings.showSettings();
+        })
     }
 
 });

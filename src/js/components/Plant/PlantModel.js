@@ -58,30 +58,25 @@ module.exports = Backbone.Model.extend({
 	},
 
 	getHealth: function (callback) {
-		var timeSinceLastWatering = (new Date().getTime() - this.get('timeLastWatered')) / 1000 / 60;
+		var timeSinceLastWatering = (new Date().getTime() - this.get('timeLastWatered')) / 1000 / 60 / 60;
 		var moistureUse = this.plantDBModel.getMoistureUse(); // * You are here!
 
 		var startDate = moment(this.get('timeLastWatered')).format('MMDD'); // 0726
 		var endDate = moment(new Date().getTime()).format('MMDD');
 
-		$.ajax({
-			url: weather.planner(startDate, endDate),
-			success: function (response) {
-				var avgHigh = parseInt(response.trip.temp_high.avg.F);
-				var avgLow = parseInt(response.trip.temp_low.avg.F);
-				var avgTemp = (avgHigh + avgLow) / 2;
+		weather.getAvgTemp(startDate, endDate, function(avgTemp) {
 				var health = 100 - (timeSinceLastWatering * avgTemp * moistureUse);
 				// Minimum lower limit
 				if (health < 0) {
 					health = 0;
 				}
 				callback(Math.ceil(health));
-			}
 		});
 	},
 
 	water: function () {
 		this.set('timeLastWatered', new Date().getTime());
+		this.save();
 	}
 
 });

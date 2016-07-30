@@ -90,7 +90,10 @@ app.delete('/auth/login', auth, function (req, res) {
 });
 
 app.get('/auth/check', auth, function (req, res) {
-    res.json(req.user);
+    var user = db.get('users')
+        .find({ id: req.user.id })
+        .value();
+    res.json(user);
 });
 
 /**
@@ -140,6 +143,20 @@ app.get('/users/:id', auth, function (req, res) {
     res.json(user);
 });
 
+app.put('/users/:id', function (req, res) {
+    var data = {
+        email: req.body.email,
+        phone: req.body.phone
+    };
+
+    var updated = db.get('users')
+        .find({ username: req.body.username })
+        .assign(data)
+        .value();
+
+    res.json(updated);
+});
+
 // API Routes go here
 
 
@@ -163,38 +180,41 @@ app.get('/users/:userId/plants', auth, function (req, res) {
 app.post('/users/:userId/plants', auth, function(req, res) {
     var userId = req.params.userId;
 
+    var plant = {
+        id: uuid(),
+        userId: userId,
+        name: req.body.name,
+        timeLastWatered: req.body.timeLastWatered,
+        img: req.body.img
+    };
 
+    db.get('plants').push(plant).value(); 
 
-
-
+    res.json(plant);
 });
 
-// app.put('/users/:id/plants/:plantId', function (req, res) {
-//     var  = db.get('')
-//         .find({})
-//         .value();
+app.put('/users/:id/plants/:plantId', function (req, res) {
+    var plantId = req.params.plantId;
 
-//     if () {
-//         res.sendStatus(404);
-//         return;
-//     }
+    var plant = db.get('plants')
+        .find({ id: plantId })
+        .assign({ 
+            name: req.body.name,
+            timeLastWatered: req.body.timeLastWatered
+        }).value();
 
-//     res.json();
+    res.json(plant);
+});
 
-// });
+app.delete('/users/:userId/plants/:plantId', function (req, res) {
+    var plantId = req.params.plantId;
 
-// app.delete('/users/:id/plants/:plantId', function (req, res) {
-//     var  = db.get('')
-//         .find({})
-//         .value();
+    db.get('plants').remove(function (plant) {
+        return plantId === plant.id;
+    }).value();
 
-//     if () {
-//         res.sendStatus(404);
-//         return;
-//     }
-
-//     res.json();
-// });
+    res.sendStatus(200);
+});
 
 
 app.listen(8000);
