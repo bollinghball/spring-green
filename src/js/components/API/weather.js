@@ -1,10 +1,19 @@
-var $ = require('jquery');
+var superagent = require('superagent');
 
-var results = localStorage.results
-	? JSON.parse(localStorage.results)
-	: {};
+var global = this;
 
-module.exports = window.weather = {
+var results = {};
+
+// Check to see if we can use localStorage
+if (global.localStorage) {
+	// Check to see if localStorage contains a results object
+	if (global.localStorage.results) {
+		// Parse it
+		results = JSON.parse(global.localStorage.results);
+	}
+}
+
+module.exports = {
 	
 	base: 'http://api.wunderground.com/api/8dbd9a72297c846c',
 
@@ -39,9 +48,10 @@ module.exports = window.weather = {
 			// Otherwise, make a request to the
 			// wunderground API with the start
 			// and end dates
-			$.ajax({
-				url: this.planner(start, end),
-				success: function (response) {
+			superagent
+				.get(this.planner(start, end))
+				.end(function (err, response) {
+					response = JSON.parse(response.text);
 					// Calculate the average temp
 					var avgHigh = parseInt(response.trip.temp_high.avg.F);
 					var avgLow = parseInt(response.trip.temp_low.avg.F);
@@ -52,13 +62,13 @@ module.exports = window.weather = {
 					// Every time we store the avgTemp,
 					// we also need to store it in
 					// localStorage:
-					localStorage.results = JSON.stringify(_this.results);
+					if (global.localStorage) {
+						localStorage.results = JSON.stringify(_this.results);
+					}
 					// Execute the callback with the
 					// avgTemp.
 					cb(avgTemp);
-				}
-			});
-
+				});
 		}
 
 

@@ -8,7 +8,9 @@ module.exports = Backbone.View.extend({
 		'keyup': 'onChange',
 		'mouseup': 'onChange',
 		'click .go-back': 'onGoBackClick',
-		'click .delete-account': 'onDeleteClick'
+		'click .delete-account': 'onDeleteClick',
+		'click #email-button': 'onEmailClick',
+		'click #phone-button': 'onPhoneClick'
 	},
 
 	initialize: function (options) {
@@ -31,6 +33,9 @@ module.exports = Backbone.View.extend({
             <input id="phone" type="text" name="phone" value="${data.phone}">
             <label for="email">Email Address</label>
             <input id="email" type="text" name="email" value="${data.email}">
+            <div class="reminders">How would you like to receive reminders to water your plants?</div>
+            <input id="email-button" type="radio" name="radio" value="${data.emailNotifications}">Email</input>
+            <input id="phone-button" type="radio" name="radio" value="${data.phoneNotifications}">Phone</input>
 		`;
 	},
 
@@ -49,6 +54,20 @@ module.exports = Backbone.View.extend({
 	onDeleteClick: function () {
 		this.model.destroy();
 		Backbone.history.navigate('logout', { trigger: true });
+	},
+
+	onEmailClick: function () {
+		this.model.set({
+			emailNotifications: true
+		});
+		this.model.save();
+	},
+
+	onPhoneClick: function () {
+		this.model.set({
+			phoneNotifications: true
+		});
+		this.model.save();
 	}
 
 });

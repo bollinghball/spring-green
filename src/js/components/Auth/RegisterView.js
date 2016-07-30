@@ -1,4 +1,5 @@
 var Backbone = require('backbone');
+var $ = require('jquery');
 
 var auth = require('./authController');
 
@@ -26,17 +27,29 @@ module.exports = Backbone.View.extend({
             <input id="phone" type="text" name="phone">
             <label for="email">Email Address</label>
             <input id="email" type="text" name="email">
+            <div id="error"></div>
             <button class="register-button">Register</button>
         `;
     },
 
     onRegisterClick: function () {
-        this.trigger('submit', {
-            username: this.$('#username').val(),
-            password: this.$('#password').val(),
-            email: this.$('#email').val(),
-            phone: this.$('#phone').val()
-        });
+        var username  = this.$('#username').val();
+        var password = this.$('#password').val();
+        var email = this.$('#email').val();
+        var phone = this.$('#phone').val();
+
+        if (!username || !password || !email || !phone) {
+            $('#error').html('All fields are required.');
+        }
+
+        if (username && password && email && phone) {
+            this.trigger('submit', {
+                username: username,
+                password: password,
+                email: email,
+                phone: phone
+            });
+        }        
     }
 
 });

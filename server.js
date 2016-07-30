@@ -2,6 +2,11 @@ var express = require('express');
 var passport = require('passport');
 var lowdb = require('lowdb');
 var uuid = require('uuid');
+var superagent = require('superagent');
+var moment = require('moment');
+
+var weather = require('./src/js/components/API/weather');
+var plants = require('./src/js/components/API/plants');
 
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -183,6 +188,7 @@ app.post('/users/:userId/plants', auth, function(req, res) {
     var plant = {
         id: uuid(),
         userId: userId,
+        plantDBId: req.body.plantDBId,
         name: req.body.name,
         timeLastWatered: req.body.timeLastWatered,
         img: req.body.img
@@ -197,11 +203,19 @@ app.put('/users/:id/plants/:plantId', function (req, res) {
     var plantId = req.params.plantId;
 
     var plant = db.get('plants')
-        .find({ id: plantId })
-        .assign({ 
-            name: req.body.name,
-            timeLastWatered: req.body.timeLastWatered
+        .find({ id: plantId });
+
+    // If the timeLastWatered was updated, set message-sent to false
+    if (req.body.timeLastWatered !== plant.value().timeLastWatered) {
+        plant.assign({
+            messageSent: false
         }).value();
+    }
+
+    plant.assign({ 
+        name: req.body.name,
+        timeLastWatered: req.body.timeLastWatered
+    }).value();
 
     res.json(plant);
 });
@@ -218,3 +232,70 @@ app.delete('/users/:userId/plants/:plantId', function (req, res) {
 
 
 app.listen(8000);
+
+// Check for plant healths in DB and send notifications
+
+function getMoistureUse (plant) {
+    var use = plant.Moisture_Use;
+    if (use === 'High') {
+        return 0.04;
+    } else if (use === 'Low') {
+        return 0.01;
+    } else {
+        return 0.02;
+    }
+}
+
+function getHealth (plant, callback) {
+    var timeSinceLastWatering = (new Date().getTime() - plant.timeLastWatered) / 1000 / 60 / 60;
+
+    superagent
+        .get(plants.url() + '?id=' + plant.plantDBId)
+        .end(function (err, response) {
+            var moistureUse;
+            var startDate;
+            var endDate;
+
+            if (err) {
+                throw err;
+            }
+            
+            response = JSON.parse(response.text);
+            response = response.data[0];
+            moistureUse = getMoistureUse(response.Moisture_Use);
+
+            startDate = moment(plant.timeLastWatered).format('MMDD'); // 0726
+            endDate = moment(new Date().getTime()).format('MMDD');
+
+            weather.getAvgTemp(startDate, endDate, function(avgTemp) {
+                var health = 100 - (timeSinceLastWatering * avgTemp * moistureUse);
+                // Minimum lower limit
+                if (health < 0) {
+                    health = 0;
+                }
+                callback(Math.ceil(health));
+            });
+        });
+}
+
+function sendMessage (plant) {
+    console.log('Sending message to ' + plant.userId);
+    var userId = plant.userId;
+    var user = db.get('users').find({ id: userId }).value();
+    var phone = user.phone;
+
+    // TODO: Use twilio to send phone notification
+}
+
+setInterval(function () {
+    var plants = db.get('plants').value();
+
+    plants.forEach(function (plant) {
+        getHealth(plant, function (health) {
+            if (health < 40 && !plant.messageSent) {
+                sendMessage(plant);
+                plant.messageSent = true;
+            }
+        });
+    });
+}, 60000)
