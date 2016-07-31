@@ -33,8 +33,9 @@ module.exports = Backbone.View.extend({
 	template: function () {
 		return `
 			<div class="plant-water-region"></div>
-			<div class="plant-list-region"></div>
 			<button class="add-plant-button">Add A Plant</button>
+			<div class="plant-list-region"></div>
+			
 		`;
 	},
 
