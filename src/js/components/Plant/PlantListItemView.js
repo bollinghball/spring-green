@@ -5,6 +5,8 @@ var PlantDBModel = require('./PlantDBModel');
 
 var PlantListItemView = Backbone.View.extend({
 
+	className: 'card',
+
 	events: {
 		'click .edit': 'onEditClick',
 		'click .save': 'onSaveClick',

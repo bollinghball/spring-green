@@ -5,7 +5,7 @@ var PlantListItemView = require('./PlantListItemView');
 
 var PlantListView = Backbone.View.extend ({
 
-	className: 'plant-list',
+	className: 'plant-list cf',
 
 	initialize: function () {
 		this.render = this.render.bind(this);

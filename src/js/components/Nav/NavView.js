@@ -2,6 +2,10 @@ var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
 
+	tagName: 'header',
+
+	className: 'cf',
+
 	initialize: function () {
 		this.render = this.render.bind(this);
 		this.listenTo(this.model, 'sync change', this.render);
@@ -21,18 +25,23 @@ module.exports = Backbone.View.extend({
 
 	template: function (data) {
 		return `
-			<h1>Spring Green</h1>
-			<nav>
+			<div class="logo">
+				<img src="assets/images/springgreenlogo.svg">
+			</div>
+			<div class="account">
+				<img src="assets/images/loginicon.svg">
 				<span>Hi, ${data.username}</span>
-				<ul>
-					<li>
-						<a href="#/settings">Settings</a>
-					</li>
-					<li>
-						<a href="#/logout">Logout</a>
-					</li>
-				</ul>
-			</nav>
+				<button>downarrow</button>
+				<div class="account-options">
+					<ul>
+						<li>
+							<a href="#/settings">Settings</a>
+						</li>
+						<li>
+							<a href="#/logout">Logout</a>
+						</li>
+					</ul>
+				</div>
 		`;
 	},
 

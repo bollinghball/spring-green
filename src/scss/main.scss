@@ -1,0 +1,98 @@
+$blue: #b9e5da;
+$orange: #f04e26;
+$green: #9dd285;
+$main-background: #e8f0ec;
+
+
+.app {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+body {
+	background: #999;
+	margin:0;
+	font-family: 'Source Sans Pro';
+}
+
+header {
+			width: 100%;
+			border-bottom: 2px solid #262322;
+			background-color: white;
+			padding: 10px;
+
+	> .logo {
+		vertical-align: middle;
+		width: 70%;
+	}
+
+	.account {
+		width: 10%;
+	}
+}
+
+.page-region {
+	background-color: $blue;
+}
+
+.plant-list-region {
+	background-color: $main-background;
+}
+
+.card {
+	width: 100%;
+	height: 355px;
+	border-radius: 6px;
+	/*border: 1px solid #262322;*/
+	transform-style: preserve-3d;
+	transition: transform 1s;
+	-webkit-box-shadow: 0px 5px 9px 1px rgba(38,35,34,0.4);
+	-moz-box-shadow:    0px 5px 9px 1px rgba(38,35,34,0.4);
+	box-shadow:         0px 5px 9px 1px rgba(38,35,34,0.4);
+	color: black;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.cf:after {
+	content:'';
+	display: table;
+	clear: both;
+}
+
+@media(min-width: 500px) {
+	.card {
+		width: 50%;
+		float: left;
+	}
+}
+
+
+@media (min-width: 1200px) {
+	header > .logo {
+				display: inline-block;
+				margin: 20px;
+				width: 30%;
+				max-width: 300px;
+
+	}	
+
+
+	.account {
+		float: right;
+		margin: 20px;
+		text-align: right;
+		vertical-align: middle;
+
+		> img {
+			width: 20%;
+			vertical-align: middle;
+			}
+	}
+
+
+
+}
+
+
