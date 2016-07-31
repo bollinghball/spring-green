@@ -42,6 +42,7 @@ module.exports = Backbone.Model.extend({
 		name: '',
 		image: '/images/1.png',
 		timeLastWatered: 0,
+		healthStatus: 100,
 		plantDBId: null,
 		messageSent: false
 	},

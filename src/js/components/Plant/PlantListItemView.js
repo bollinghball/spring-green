@@ -42,13 +42,15 @@ var PlantListItemView = Backbone.View.extend({
 				timeLastWatered: moment(this.model.get('timeLastWatered')).fromNow(),
 				scientificName: this.model.plantDBModel.get('Scientific_Name_x'),
 				Duration: this.model.plantDBModel.get('Duration'),
-				activePeriod: this.model.plantDBModel.get('Active_Growth_Period')
+				activePeriod: this.model.plantDBModel.get('Active_Growth_Period'),
+				healthNumber: this.model.get('healthNumber')
 				// healthStatus:
 				// thumbnail: from a premade gallery
 			};
 		
 			this.$el.html(this.template(data));
-			this.model.getHealth(function (health) {
+
+			var healthNumber = this.model.getHealth(function (health) {
 				_this.$('.health').text(health);
 			});
 		}
@@ -63,16 +65,16 @@ var PlantListItemView = Backbone.View.extend({
 			<div>Name: ${data.name}</div>
 			<div>Common Name: ${data.commonName}</div>
 			<div>timeLastWatered: Last Watered ${data.timeLastWatered}</div>
-			<div class="health">Health Status</div>
+			<div class="health" style="width:${data.healthNumber}%"></div>
 			<button class="edit">Edit</button>
-			<button class="flip">Flip</button>
+			<button class="flip">Details</button>
 		</div>
 		<div class="back inactive">
 			<div>Common Name: ${data.commonName}</div>
 			<div>Scientific Name: ${data.scientificName}</div>
 			<div class="duration">Duration: ${data.Duration}</div>
 			<div class="active-period">Active period: ${data.activePeriod}</div>
-			<button class="flip-again">Flip over</button>
+			<button class="flip-again">Health</button>
 		</div>
 		
 		`;
