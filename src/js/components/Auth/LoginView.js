@@ -7,7 +7,8 @@ module.exports = Backbone.View.extend({
     className: 'login',
 
     events: {
-        'click .login-button': 'onLoginClick'
+        'click .login-button': 'onLoginClick',
+        'keyup :input': 'logKey'
     },
 
     render: function () {
@@ -42,6 +43,14 @@ module.exports = Backbone.View.extend({
                 password: password
             });
         }
+    },
+
+    logKey: function () {
+        $("#password").keyup(function(event){
+            if(event.keyCode == 13){
+                $(".login-button").click();
+            }
+        });
     }
 
 });

@@ -8,7 +8,8 @@ module.exports = Backbone.View.extend({
     className: 'login',
 
     events: {
-        'click .register-button': 'onRegisterClick'
+        'click .register-button': 'onRegisterClick',
+        'keyup :input': 'logKey'
     },
 
     render: function () {
@@ -50,6 +51,14 @@ module.exports = Backbone.View.extend({
                 phone: phone
             });
         }        
+    },
+
+    logKey: function () {
+        $("#email").keyup(function(event){
+            if(event.keyCode == 13){
+                $(".register-button").click();
+            }
+        });
     }
 
 });

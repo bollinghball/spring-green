@@ -5,7 +5,10 @@ var plantsApi = require('../API/plants');
 module.exports = Backbone.Model.extend({
 	defaults: {
 		Common_Name: '',
-		Moisture_Use: 'Medium'
+		Moisture_Use: 'Medium',
+		Duration: '',
+		Active_Growth_Period: '',
+		Scientific_Name_x: ''
 	},
 
 	url: function () {
