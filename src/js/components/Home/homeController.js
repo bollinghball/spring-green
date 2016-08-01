@@ -25,6 +25,7 @@ module.exports = {
 			// Create the plant
 			var plant = plants.create({
 				plantDBId: plantDBModel.get('id')
+				
 			}, {
 				success: function () {
 					plant.water();
