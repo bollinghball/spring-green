@@ -5,7 +5,7 @@ var PlantDBModel = require('./PlantDBModel');
 
 var PlantListItemView = Backbone.View.extend({
 
-	className: 'card',
+	className: 'container',
 
 	events: {
 		'click .edit': 'onEditClick',
@@ -63,9 +63,26 @@ var PlantListItemView = Backbone.View.extend({
 
 	template: function (data) {
 		return `
-		<div class="front">
-			<div class="detail-img">
-				<img src="${data.thumbail}">
+		<div class="card">
+			<div class="front">
+				<div class="detail-img">
+					<img src="${data.thumbail}">
+				</div>
+				<div>Name: ${data.name}</div>
+				<div>Last Watered ${data.timeLastWatered}</div>
+				<h3>Health Status: </h3>
+				<div class="health-status-region">
+					<div class="health"></div>
+				</div>
+				<button class="edit">Edit</button>
+				<button class="flip">Details</button>
+			</div>
+			<div class="back inactive">
+				<div>Common Name: ${data.commonName}</div>
+				<div>Scientific Name: ${data.scientificName}</div>
+				<div class="duration">Duration: ${data.Duration}</div>
+				<div class="active-period">Active period: ${data.activePeriod}</div>
+				<button class="flip-again">Health</button>
 			</div>
 			<div>Name: ${data.name}</div>
 			<div>Last Watered ${data.timeLastWatered}</div>
@@ -82,8 +99,8 @@ var PlantListItemView = Backbone.View.extend({
 			<div class="duration">Duration: ${data.Duration}</div>
 			<div class="active-period">Active period: ${data.activePeriod}</div>
 			<button class="flip-again">Health</button>
+
 		</div>
-		
 		`;
 	},
 

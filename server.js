@@ -288,7 +288,7 @@ function sendMessage (plant) {
     // Example of how to send a message reminder:
         // 
         // user.messages.create({ 
-        //     to: "+16518675309", 
+        //     to: "+18035284393", 
         //     from: "+18038324951", 
         //     body: "Water your plants!"  
         // }, function(err, message) { 
