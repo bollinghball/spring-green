@@ -34,7 +34,7 @@ module.exports = Backbone.View.extend({
 
 		this.childViews.forEach(function (view) {
 			view.model.getHealth(function (health) {
-				if (health < 100) {
+				if (health < 80) {
 					// Only show if at least one of the models is less than
 					// the water threshold.
 					_this.show();
@@ -55,7 +55,7 @@ module.exports = Backbone.View.extend({
 	onWaterAllClick: function () {
 		this.collection.forEach(function (model) {
 			model.getHealth(function (health) {
-				if (health < 100) {
+				if (health < 80) {
 					model.water();
 				}
 			});
@@ -64,7 +64,7 @@ module.exports = Backbone.View.extend({
 	},
 
 	show: function () {
-	
+
 		this.$el.addClass('visible');
 	}
 

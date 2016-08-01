@@ -282,9 +282,18 @@ function sendMessage (plant) {
     console.log('Sending message to ' + plant.userId);
     var userId = plant.userId;
     var user = db.get('users').find({ id: userId }).value();
-    var phone = user.phone;
+    // var phone = user.phone;
 
     // TODO: Use twilio to send phone notification
+    // Example of how to send a message reminder:
+        // 
+        // user.messages.create({ 
+        //     to: "+16518675309", 
+        //     from: "+18038324951", 
+        //     body: "Water your plants!"  
+        // }, function(err, message) { 
+        //     console.log(message.sid); 
+        // });
 }
 
 setInterval(function () {
@@ -298,4 +307,4 @@ setInterval(function () {
             }
         });
     });
-}, 60000)
+}, 3600000)

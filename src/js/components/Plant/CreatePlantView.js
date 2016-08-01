@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 var PlantModel = require('./PlantModel');
 var PlantDBModel = require('./PlantDBModel');
 var PlantDBSearchView = require('./PlantDBSearchView');
+var HomeView = require('../Home/HomeView');
 
 module.exports = Backbone.View.extend({
 

@@ -33,7 +33,6 @@ var PlantListItemView = Backbone.View.extend({
 			data = {
 				name: this.model.get('name')
 			};
-			
 			this.$el.html(this.editTemplate(data));
 		} else {
 			data = {
@@ -42,16 +41,22 @@ var PlantListItemView = Backbone.View.extend({
 				timeLastWatered: moment(this.model.get('timeLastWatered')).fromNow(),
 				scientificName: this.model.plantDBModel.get('Scientific_Name_x'),
 				Duration: this.model.plantDBModel.get('Duration'),
-				activePeriod: this.model.plantDBModel.get('Active_Growth_Period'),
-				healthNumber: this.model.get('healthNumber')
-				// healthStatus:
+				activePeriod: this.model.plantDBModel.get('Active_Growth_Period')
 				// thumbnail: from a premade gallery
 			};
 		
 			this.$el.html(this.template(data));
 
-			var healthNumber = this.model.getHealth(function (health) {
-				_this.$('.health').text(health);
+			this.model.getHealth(function (health) {
+				_this.$('.health').css('width', health + '%');
+				// if the health is ...
+				if(health < 40) {
+					_this.$('.health').addClass('red');
+				} else if(health > 80) {
+					_this.$('.health').addClass('green');
+				} else {
+					_this.$('.health').addClass('yellow');
+				}
 			});
 		}
 	},
@@ -63,9 +68,9 @@ var PlantListItemView = Backbone.View.extend({
 				<img src="${data.thumbail}">
 			</div>
 			<div>Name: ${data.name}</div>
-			<div>Common Name: ${data.commonName}</div>
-			<div>timeLastWatered: Last Watered ${data.timeLastWatered}</div>
-			<div class="health" style="width:${data.healthNumber}%"></div>
+			<div>Last Watered ${data.timeLastWatered}</div>
+			<h3>Health Status: </h3>
+			<div class="health"></div>
 			<button class="edit">Edit</button>
 			<button class="flip">Details</button>
 		</div>

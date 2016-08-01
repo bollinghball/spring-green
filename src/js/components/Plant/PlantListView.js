@@ -31,7 +31,7 @@ var PlantListView = Backbone.View.extend ({
 		this.childViews.forEach(function (view) {
 			view.render();
 			_this.$el.append(view.$el);
-		})
+		});
 	}
 
 });
