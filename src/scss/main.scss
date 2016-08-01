@@ -50,7 +50,7 @@ header {
 	background-color: $blue;
 }
 
-.plant-list-region {
+.plant-list-region, .add-plant {
 	background-color: $main-background;
 	padding-top: 1px;
 }
@@ -83,6 +83,10 @@ header {
 	color: black;
 	box-sizing: border-box;
 	padding: 10px;
+}
+
+.card.front {
+	background-color: white;
 }
 
 .cf:after {
