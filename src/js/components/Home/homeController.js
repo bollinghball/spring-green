@@ -23,8 +23,12 @@ module.exports = {
 
 		createView.on('create', function (plantDBModel) {
 			// Create the plant
-			plants.create({
+			var plant = plants.create({
 				plantDBId: plantDBModel.get('id')
+			}, {
+				success: function () {
+					plant.water();
+				}
 			});
 
 			Backbone.history.navigate('home', { trigger: true});
