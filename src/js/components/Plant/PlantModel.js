@@ -53,10 +53,6 @@ module.exports = Backbone.Model.extend({
 		});
 
 		this.plantDBModel.fetch();
-
-		if (this.isNew()) {
-			this.water();
-		}
 	},
 
 	getHealth: function (callback) {

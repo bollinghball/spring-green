@@ -20,14 +20,11 @@ var PlantListItemView = Backbone.View.extend({
 		this.editMode = false;
 		this.listenTo(this.model, 'change', this.render);
 		this.listenTo(this.model.plantDBModel, 'sync', this.render);
-
 	},
 
 	render: function () {
 		var _this = this;
 		var data;
-
-		console.log(this.model.collection);
 
 		if (this.editMode) {
 			data = {
@@ -51,10 +48,13 @@ var PlantListItemView = Backbone.View.extend({
 				_this.$('.health').css('width', health + '%');
 				// if the health is ...
 				if(health < 40) {
+					_this.$('.health-description').text('Very Poor Condition');
 					_this.$('.health').addClass('red');
 				} else if(health > 80) {
+					_this.$('.health-description').text('Healthy');
 					_this.$('.health').addClass('green');
 				} else {
+					_this.$('.health-description').text('Needs Attention Soon');
 					_this.$('.health').addClass('yellow');
 				}
 			});
@@ -71,6 +71,7 @@ var PlantListItemView = Backbone.View.extend({
 				<div>Name: ${data.name}</div>
 				<div>Last Watered ${data.timeLastWatered}</div>
 				<h3>Health Status: </h3>
+				<div class="health-description"></div>
 				<div class="health"></div>
 				<button class="edit">Edit</button>
 				<button class="flip">Details</button>

@@ -4,6 +4,7 @@ var lowdb = require('lowdb');
 var uuid = require('uuid');
 var superagent = require('superagent');
 var moment = require('moment');
+var bodyParser = require('body-parser');
 
 var weather = require('./src/js/components/API/weather');
 var plants = require('./src/js/components/API/plants');
@@ -57,7 +58,12 @@ passport.deserializeUser(function (obj, cb) {
 
 var app = express();
 
-app.use(require('body-parser')());
+// app.use(require('body-parser')());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 app.use(require('express-session')({
     secret: 'honey badger don\'t care',
     resave: false,
@@ -125,7 +131,9 @@ app.post('/users', function (req, res) {
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
-        phone: req.body.phone
+        phone: req.body.phone,
+        emailNotifications: false,
+        phoneNotifications: false
     };
 
     db.get('users')
@@ -151,7 +159,9 @@ app.get('/users/:id', auth, function (req, res) {
 app.put('/users/:id', function (req, res) {
     var data = {
         email: req.body.email,
-        phone: req.body.phone
+        phone: req.body.phone,
+        emailNotifications: req.body.emailNotifications,
+        phoneNotifications: req.body.phoneNotifications
     };
 
     var updated = db.get('users')

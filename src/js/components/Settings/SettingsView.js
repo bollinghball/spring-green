@@ -8,9 +8,7 @@ module.exports = Backbone.View.extend({
 		'keyup': 'onChange',
 		'mouseup': 'onChange',
 		'click .go-back': 'onGoBackClick',
-		'click .delete-account': 'onDeleteClick',
-		'click #email-button': 'onEmailClick',
-		'click #phone-button': 'onPhoneClick'
+		'click .delete-account': 'onDeleteClick'
 	},
 
 	initialize: function (options) {
@@ -21,7 +19,9 @@ module.exports = Backbone.View.extend({
 		console.log(this.model.attributes);
 		var data = {
 			phone: this.model.get('phone'),
-			email: this.model.get('email')
+			email: this.model.get('email'),
+			emailNotifications: this.model.get('emailNotifications'),
+			phoneNotifications: this.model.get('phoneNotifications'),
 		};
 		this.$el.html(this.template(data));
 	},
@@ -34,8 +34,8 @@ module.exports = Backbone.View.extend({
             <label for="email">Email Address</label>
             <input id="email" type="text" name="email" value="${data.email}">
             <div class="reminders">How would you like to receive reminders to water your plants?</div>
-            <input id="email-button" type="radio" name="radio" value="${data.emailNotifications}">Email</input>
-            <input id="phone-button" type="radio" name="radio" value="${data.phoneNotifications}">Phone</input>
+            <input id="email-button" type="checkbox" ${data.emailNotifications ? 'checked' : ''}>Email</input>
+            <input id="phone-button" type="checkbox" ${data.phoneNotifications ? 'checked' : ''}>Phone</input>
 		`;
 	},
 
@@ -46,28 +46,17 @@ module.exports = Backbone.View.extend({
 	onChange: _.debounce(function () {
 		this.model.set({
 			phone: this.$el.find('#phone').val(),
-			email: this.$el.find('#email').val()
+			email: this.$el.find('#email').val(),
+			emailNotifications: this.$el.find('#email-button').is(':checked'),
+			phoneNotifications: this.$el.find('#phone-button').is(':checked')
 		});
+		console.log(this.model);
 		this.model.save();
-	}, 1000),
+	}, 500),
 
 	onDeleteClick: function () {
 		this.model.destroy();
 		Backbone.history.navigate('logout', { trigger: true });
-	},
-
-	onEmailClick: function () {
-		this.model.set({
-			emailNotifications: true
-		});
-		this.model.save();
-	},
-
-	onPhoneClick: function () {
-		this.model.set({
-			phoneNotifications: true
-		});
-		this.model.save();
 	}
 
 });
