@@ -12,7 +12,6 @@ var PlantListItemView = Backbone.View.extend({
 		'click .save': 'onSaveClick',
 		'click .delete': 'onDeleteClick',
 		'click .flip': 'onFlipClick',
-		'click .flip-again': 'onFlipAgainClick'
 	},
 
 	initialize: function () {
@@ -79,11 +78,11 @@ var PlantListItemView = Backbone.View.extend({
 				<div class="health-status-region">
 					<div class="health"></div>
 				</div>
-				<div>Last Watered ${data.timeLastWatered}</div>
+				<div class="last-watered">Last Watered ${data.timeLastWatered}</div>
 				<button class="edit">Edit</button>
 				<button class="flip">Details</button>
 			</div>
-			<div class="back inactive">
+			<div class="back">
 				<div class="plant-info">
 					<h5 class="plant-title">Common Name</h5> 
 					<h4 class="plant-value">${data.commonName}</h4>
@@ -100,7 +99,7 @@ var PlantListItemView = Backbone.View.extend({
 					<h5 class="plant-title">Active Period</h5> 
 					<h4 class="plant-value">${data.activePeriod}</h4>
 				</div>
-				<button class="flip-again">Health</button>
+				<button class="flip">Health</button>
 			</div>
 		</div>
 		`;
@@ -135,21 +134,7 @@ var PlantListItemView = Backbone.View.extend({
 	},
 
 	onFlipClick: function () {
-		this.showBack();
-	},
-
-	onFlipAgainClick: function () {
-		this.hideBack();
-	},
-
-	showBack: function () {
-		this.$('.back').removeClass('inactive');
-		this.$('.front').addClass('inactive');
-	},
-
-	hideBack: function () {
-		this.$('.back').addClass('inactive');
-		this.$('.front').removeClass('inactive');
+		this.$('.card').toggleClass('flipped');
 	}
 
 });
