@@ -3,8 +3,10 @@ $orange: #f04e26;
 $green: #9dd285;
 $main-background: #e8f0ec;
 
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700|Didact+Gothic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,700|Didact+Gothic);
 
+@import 'search.scss';
+@import 'settings.scss';
 
 .app {
 	width: 100%;
@@ -15,6 +17,10 @@ $main-background: #e8f0ec;
 body {
 	background: #999;
 	margin:0;
+}
+
+button {
+	font-family: 'Didact Gothic';
 }
 
 div {
@@ -69,10 +75,12 @@ header {
 	min-height: 800px;
 }
 
-.plant-list-region, .add-plant {
+.plant-list-region {
 	background-color: $main-background;
 	padding-top: 1px;
 	min-height: 800px;
+	box-shadow: -7px 0px 12px -2px rgba(0,0,0,0.2);
+
 }
 
 .plant-water-region {
@@ -80,7 +88,7 @@ header {
 	padding: 10px;
 
 	h2 {
-		font-size: 36px;
+		font-size: 25px;
 		font-weight: 300;
 		margin: 20px 0;
 	}
@@ -121,7 +129,7 @@ header {
 	padding: 10px;
 
 	> h3 {
-		font-size: 36px;
+		font-size: 25px;
 		margin: 20px 0;
 		font-weight: 300;
 		width: 70%;
@@ -131,13 +139,15 @@ header {
 	button {
 		float: right;
 		width: 30%;
-		margin: 30px 0;
+		margin: 20px 0;
 		box-sizing: border-box;
 		color: white;
 		background-color: $orange;
 		border-radius: 4px;
-		max-width: 100px;
+		max-width: 120px;
 		border: none;
+		font-size: 16px;
+		padding: 10px;
 	}
 }
 
@@ -147,7 +157,7 @@ header {
 	padding: 10px;
 	position: relative;
 	perspective: 800px;
-	height: 300px;
+	height: 380px;
 	width: 100%;
 }
 
@@ -167,6 +177,47 @@ header {
 	background-color: white;
 }
 
+.detail-img {
+	> img {
+		width: 100%;
+	}
+}
+
+.plant-title {
+	margin-top: 0;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+}
+
+.plant-value {
+	margin: 0;
+	font-family: 'Didact Gothic';
+}
+
+.plant-info {
+	margin-bottom: 20px;
+}
+
+.health-status-region {
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 50px;
+	height: 30px;
+	overflow: hidden;
+}
+
+.health {
+	border-radius: 50px 0 0 50px;
+}
+
+.edit, .flip {
+	background-color: $orange;
+	color: white;
+	border-radius: 4px;
+	border: none;
+	padding: 10px;
+}
+
 .card.front {
 	background-color: white;
 }
@@ -177,7 +228,7 @@ header {
 	clear: both;
 }
 
-@media(min-width: 500px) {
+@media(min-width: 400px) {
 	.container {
 		width: 50%;
 	}

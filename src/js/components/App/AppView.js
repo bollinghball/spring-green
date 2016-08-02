@@ -27,7 +27,7 @@ module.exports = Backbone.View.extend({
     template: function () {
         return `
             <div class="nav-region"></div>
-            <div class="page-region"></div>
+            <div class="page-region cf"></div>
         `;
     },
 

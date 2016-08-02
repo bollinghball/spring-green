@@ -1,0 +1,43 @@
+
+
+.add-plant {
+	background-color: $main-background;
+	padding: 20px;
+	min-height: 800px;
+	box-sizing: border-box;
+
+}
+
+.back-button {
+	font-family: 'Ubuntu';
+	font-size: 22px;
+	background: transparent;
+	border: none;
+	color: $orange;
+	font-weight: 300;
+}
+
+.search-region {
+	width: 70%;
+	margin: 20px auto;
+
+	input {
+		width: 82%;
+		height: 28.91px;
+		vertical-align: middle;
+		margin-left: 10px
+	}
+
+	button.search {
+		width: 14%;
+		background-color: $orange;
+		color: white;
+		font-family: 'Didact Gothic';
+		box-sizing: border-box;
+		padding: 7px 0;
+		font-size: 16px;
+		border: none;
+		vertical-align: middle;
+	}
+}
+

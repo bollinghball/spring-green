@@ -32,8 +32,7 @@ var PlantDBSearchView = Backbone.View.extend({
 
 	template: function () {
 		return `
-			<input type="text" class="search-input">
-			<button class="search">Search</button>
+			<input type="text" class="search-input"><button class="search">Search</button>
 			<div class="list-region"></div>
 		`;
 	},
