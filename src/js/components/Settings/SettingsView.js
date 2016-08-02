@@ -3,6 +3,8 @@ var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
 
+	className: 'settings-region',
+
 	events: {
 		'change': 'onChange',
 		'keyup': 'onChange',
@@ -29,14 +31,22 @@ module.exports = Backbone.View.extend({
 	template: function (data) {
 		return `
 			<button class="go-back">My Plants</button>
-			<label for="phone">Phone Number</label>
-            <input id="phone" type="text" name="phone" value="${data.phone}">
-            <label for="email">Email Address</label>
-            <input id="email" type="text" name="email" value="${data.email}">
-            <div class="reminders">How would you like to receive reminders to water your plants?</div>
-            <input id="email-button" type="checkbox" ${data.emailNotifications ? 'checked' : ''}>Email</input>
-            <input id="phone-button" type="checkbox" ${data.phoneNotifications ? 'checked' : ''}>Phone</input>
-		`;
+			<h3>Settings</h3>
+			<div class="phone">
+				<label for="phone">Phone Number</label>
+	            <input id="phone" type="text" name="phone" value="${data.phone}">
+	        </div>
+	        <div class="email">
+	            <label for="email">Email Address</label>
+	            <input id="email" type="text" name="email" value="${data.email}">
+	        </div>
+	        <div class="reminders">
+	            <div class="reminders">How would you like to receive reminders to water your plants?</div>
+	            <input id="email-button" type="checkbox" ${data.emailNotifications ? 'checked' : ''}>Email</input>
+	            <input id="phone-button" type="checkbox" ${data.phoneNotifications ? 'checked' : ''}>Phone</input>
+	        </div>
+	        <button class="delete-account">Delete Account</button>
+			`;
 	},
 
 	onGoBackClick: function () {

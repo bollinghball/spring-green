@@ -68,21 +68,38 @@ var PlantListItemView = Backbone.View.extend({
 				<div class="detail-img">
 					<img src="${data.img}">
 				</div>
-				<div>Name: ${data.name}</div>
-				<div>Last Watered ${data.timeLastWatered}</div>
-				<h3>Health Status: </h3>
-				<div class="health-description"></div>
+				<div class="plant-info">
+					<h5 class="plant-title">Name</h5> 
+					<h4 class="plant-value">${data.name}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Health Status</h5> 
+					<h4 class="plant-value health-description"></h4>
+				</div>
 				<div class="health-status-region">
 					<div class="health"></div>
 				</div>
+				<div>Last Watered ${data.timeLastWatered}</div>
 				<button class="edit">Edit</button>
 				<button class="flip">Details</button>
 			</div>
 			<div class="back inactive">
-				<div>Common Name: ${data.commonName}</div>
-				<div>Scientific Name: ${data.scientificName}</div>
-				<div class="duration">Duration: ${data.Duration}</div>
-				<div class="active-period">Active period: ${data.activePeriod}</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Common Name</h5> 
+					<h4 class="plant-value">${data.commonName}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Scientific Name</h5> 
+					<h4 class="plant-value">${data.scientificName}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Duration</h5> 
+					<h4 class="plant-value">${data.Duration}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Active Period</h5> 
+					<h4 class="plant-value">${data.activePeriod}</h4>
+				</div>
 				<button class="flip-again">Health</button>
 			</div>
 		</div>
