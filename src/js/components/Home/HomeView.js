@@ -6,6 +6,8 @@ var PlantWaterView = require('../Plant/PlantWaterView');
 
 module.exports = Backbone.View.extend({
 
+	className: 'home',
+
 	events: {
 		'click .add-plant-button': 'handleButtonClick'
 	},
@@ -39,7 +41,7 @@ module.exports = Backbone.View.extend({
 
 	template: function () {
 		return `
-			<div class="plant-water-region"></div>
+			<div class="plant-water-region cf"></div>
 			<div class="plant-list-region">
 				<div class="plant-header cf">
 					<h3>My Plants</h3>

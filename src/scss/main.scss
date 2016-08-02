@@ -8,10 +8,15 @@ $main-background: #e8f0ec;
 @import 'search.scss';
 @import 'settings.scss';
 
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
 .app {
 	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
+	position: relative;
 }
 
 body {
@@ -35,16 +40,31 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Ubuntu';
 }
 
+button:focus {outline:0;}
+
+.nav-region {
+	height: 10vh;
+}
+
 header {
-			border-bottom: 2px solid #262322;
-			background-color: white;
-			padding: 10px;
+	border-bottom: 2px solid #262322;
+	background-color: white;
+	height: 100%;
+	position: relative;
+	z-index: 99;
+	min-height: 60px;
+	line-height: 10vh;
 
 	> .logo {
+		display: inline-block;
 		vertical-align: middle;
 		width: 70%;
 		max-width: 270px;
 		min-width: 220px;
+		img {
+			vertical-align: middle;
+    		margin-left: 1em;
+		}
 	}
 
 	.account {
@@ -66,9 +86,11 @@ header {
 
 		position: absolute;
 		right: 5px;
+		top: 50px;
 		background-color: white;
 		border-radius: 4px;
 		border: 1px solid black;
+		line-height: 1.5em;
 
 		ul {
 			padding: 0;
@@ -86,24 +108,31 @@ header {
 #downarrow {
 	border: none;
 	background: none;
+	transition: transform 1s;
+
+	&.showing-settings {
+		transform: rotateZ(180deg);
+	}
 }
 
 .page-region {
 	background-color: $blue;
 	padding: 1px;
-	min-height: 800px;
+	position: relative;
 }
 
 .plant-list-region {
 	background-color: $main-background;
+	width: 100%;
 	padding-top: 1px;
-	min-height: 800px;
 	box-shadow: -7px 0px 12px -2px rgba(0,0,0,0.2);
-	transition: all 1s ease;
 }
 
 .plant-list-region.full {
+	position: absolute;
+	top: 0;
 	width: 100%;
+	max-width: 1200px;
 }
 
 .plant-water-region {
@@ -152,7 +181,7 @@ header {
 	padding: 10px;
 
 	> h3 {
-		font-size: 25px;
+		font-size: 30px;
 		margin: 20px 0;
 		font-weight: 300;
 		width: 70%;
@@ -268,6 +297,7 @@ header {
 
 .last-watered {
 	text-align: right;
+	margin-bottom: 10px;
 }
 
 .edit, .flip, .save {
@@ -314,16 +344,40 @@ header {
 }
 
 @media(min-width: 700px) {
+	.app {
+		position: relative;
+	}
+
+	.home {
+		height: 100%;
+	}
+
+	.page-region {
+		position: absolute;
+		width: 100%;
+		height: 90vh;
+	}
+
 	.plant-water-region {
+		overflow: scroll;
 		width: 30%;
-		float: left;
+		height: 100%;
 	}
 
 	.plant-list-region {
 		width: 70%;
-		position: absolute;
+		top: 0;
 		right: 0;
-		// float: left;
+		bottom: 0;
+		position: absolute;
+		overflow: scroll;
+		transition: width 1s ease;
+	}
+
+	.plant-list-region.full {
+		.container {
+			width: 33.3%;
+		}
 	}
 
 }
@@ -340,17 +394,21 @@ header {
 	.plant-list-region {
 		width: 75%;
 	}
+
+	.plant-list-region.full {
+		.container {
+			width: 25%;
+		}
+	}
 }
 
 
 @media (min-width: 1200px) {
 	header > .logo {
-				display: inline-block;
-				margin: 20px;
-				width: 30%;
-				max-width: 300px;
-
-	}	
+		// margin: 20px;
+		// width: 30%;
+		// max-width: 300px;
+	}
 
 	.account {
 		float: right;
@@ -361,11 +419,8 @@ header {
 		> img {
 			width: 20%;
 			vertical-align: middle;
-			}
+		}
 	}
-
-
-
 }
 
 
