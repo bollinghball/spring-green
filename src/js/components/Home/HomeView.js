@@ -37,7 +37,7 @@ module.exports = Backbone.View.extend({
 		return `
 			<div class="plant-water-region"></div>
 			<div class="plant-list-region">
-				<div class="plant-header">
+				<div class="plant-header cf">
 					<h3>My Plants</h3>
 					<button class="add-plant-button">Add A Plant</button>
 				</div>

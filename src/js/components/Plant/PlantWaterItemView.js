@@ -3,6 +3,8 @@ var PlantWaterView = require('./PlantWaterView');
 
 module.exports = Backbone.View.extend({
 
+	className: 'water-plant cf',
+
 	events: {
 		'click .water': 'onWaterClick'
 	},
