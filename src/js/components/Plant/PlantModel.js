@@ -47,33 +47,44 @@ module.exports = Backbone.Model.extend({
 	},
 
 	initialize: function (options) {
+		var _this = this;
+
 		this.plantDBModel = new PlantDBModel({
 			id: options.plantDBId
 		});
 
-		this.plantDBModel.fetch();
+		this.plantDBModel.fetch({
+			success: function () {
+				_this.trigger('dbModelLoaded', _this);
+
+				if (_this.collection) {
+					_this.collection.trigger('dbModelLoaded', _this);
+				}
+			}
+		});
 	},
 
 	getHealth: function (callback) {
 		var timeSinceLastWatering = (new Date().getTime() - this.get('timeLastWatered')) / 1000 / 60 / 60;
-		var moistureUse = this.plantDBModel.getMoistureUse(); // * You are here!
+		var moistureUse = this.plantDBModel.getMoistureUse();
 
 		var startDate = moment(this.get('timeLastWatered')).format('MMDD'); // 0726
 		var endDate = moment(new Date().getTime()).format('MMDD');
 
 		weather.getAvgTemp(startDate, endDate, function(avgTemp) {
-				var health = 100 - (timeSinceLastWatering * avgTemp * moistureUse);
-				// Minimum lower limit
-				if (health < 0) {
-					health = 0;
-				}
-				callback(Math.ceil(health));
+			var health = 100 - (timeSinceLastWatering * avgTemp * moistureUse);
+			// Minimum lower limit
+			if (health < 0) {
+				health = 0;
+			}
+			callback(Math.ceil(health));
 		});
 	},
 
 	water: function () {
 		this.set('timeLastWatered', new Date().getTime());
 		this.save();
+		Backbone.trigger('water', this);
 	},
 
 	getImage: function () {

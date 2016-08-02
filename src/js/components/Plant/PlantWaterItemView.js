@@ -17,6 +17,7 @@ module.exports = Backbone.View.extend({
 		var data = {
 			name: this.model.get('name')
 		};
+
 		this.$el.html(this.template(data));
 	},
 

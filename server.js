@@ -292,7 +292,7 @@ function sendMessage (plant) {
     console.log('Sending message to ' + plant.userId);
     var userId = plant.userId;
     var user = db.get('users').find({ id: userId }).value();
-    // var phone = user.phone;
+    var phone = user.phone;
 
     // TODO: Use twilio to send phone notification
     // Example of how to send a message reminder:
@@ -304,6 +304,17 @@ function sendMessage (plant) {
         // }, function(err, message) { 
         //     console.log(message.sid); 
         // });
+        var accountSid = 'ACc9c7cdcd6f86e2a7851ac1b9c52686e6';
+        var authToken = "46608c028aaeca0b2088beab1c07b480";
+        var client = require('twilio')(accountSid, authToken);
+
+        client.sms.messages.create({
+            body: "We're dying! Water Ussssss.",
+            to: "+18035284393",
+            from: "+15005550006"
+        }, function(err, sms) {
+            process.stdout.write(sms.sid);
+        });     
 }
 
 setInterval(function () {

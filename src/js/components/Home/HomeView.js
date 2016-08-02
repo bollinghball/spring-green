@@ -14,6 +14,8 @@ module.exports = Backbone.View.extend({
 		this.plants = options.plants;
 		this.plantListView = new PlantListView({ collection: this.plants });
 		this.plantWaterView = new PlantWaterView({ collection: this.plants });
+		this.listenTo(Backbone, 'water', this.updateSideBar);
+		this.listenTo(this.plants, 'dbModelLoaded change update', this.updateSideBar.bind(this));
 	},
 
 	render: function () {
@@ -31,6 +33,8 @@ module.exports = Backbone.View.extend({
 
 		this.$('.plant-water-region')
 			.append(this.plantWaterView.$el);
+
+		this.updateSideBar();
 	},
 
 	template: function () {
@@ -68,6 +72,17 @@ module.exports = Backbone.View.extend({
 		if (plants.length === 0) {
 			this.$el.html(this.noPlantsTemplate());
 		}
+	},
+
+	updateSideBar: function () {
+		var _this = this;
+		this.plants.getUnwateredPlants(function (plants) {
+			if (plants.length === 0) {
+				_this.$('.plant-list-region').addClass('full');
+			} else {
+				_this.$('.plant-list-region').removeClass('full');
+			}
+		})
 	}
 
 });

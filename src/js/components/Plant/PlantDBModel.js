@@ -28,7 +28,7 @@ module.exports = Backbone.Model.extend({
 	getMoistureUse: function () {
 		var use = this.get('Moisture_Use');
 		if (use === 'High') {
-			return 0.04;
+			return 18;
 		} else if (use === 'Low') {
 			return 0.01;
 		} else {

@@ -80,7 +80,11 @@ header {
 	padding-top: 1px;
 	min-height: 800px;
 	box-shadow: -7px 0px 12px -2px rgba(0,0,0,0.2);
+	transition: all 1s ease;
+}
 
+.plant-list-region.full {
+	width: 100%;
 }
 
 .plant-water-region {
@@ -251,7 +255,9 @@ header {
 
 	.plant-list-region {
 		width: 70%;
-		float: left;
+		position: absolute;
+		right: 0;
+		// float: left;
 	}
 
 }

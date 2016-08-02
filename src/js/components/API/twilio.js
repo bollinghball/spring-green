@@ -1,8 +1,8 @@
 
-var accountSid = 'ACc9c7cdcd6f86e2a7851ac1b9c52686e6'; 
-var authToken = '[9acfa71ba14cd7bc274f3a9885e09450]';
+var testAccountSid = 'ACf6cd978c9975f85e36cac227309efe48'; 
+var testAuthToken = '[46608c028aaeca0b2088beab1c07b480]';
 
-var client = require('twilio')(accountSid, authToken);
+var client = require('twilio')(testAccountSid, testAuthToken);
 
 // Example of how to send a message reminder:
 // 

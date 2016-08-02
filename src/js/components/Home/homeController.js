@@ -34,13 +34,12 @@ module.exports = {
 	createPlant: function (plantDBModel) {
 		var plant = plants.create({
 			plantDBId: plantDBModel.get('id'),
-			img: plantDBModel.get('img')
-				
-			}, {
-				success: function () {
-					plant.water();
-				}
-			});
+			img: plantDBModel.get('img')		
+		}, {
+			success: function () {
+				plant.water();
+			}
+		});
 	}
 
 };

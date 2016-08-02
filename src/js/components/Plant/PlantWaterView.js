@@ -11,7 +11,7 @@ module.exports = Backbone.View.extend({
 
 	initialize: function () {
 		this.render = this.render.bind(this);
-		this.listenTo(this.collection, 'update change', this.render);
+		this.listenTo(this.collection, 'dbModelLoaded update change', this.render);
 	},
 
 	render: function () {
@@ -25,21 +25,17 @@ module.exports = Backbone.View.extend({
 			});
 		}
 
-		this.childViews = this.collection.map(function (plant) {
-			var listItemView = new PlantWaterItemView({
-				model: plant
+		this.collection.getUnwateredPlants(function (plants) {
+			_this.childViews = plants.map(function (plant) {
+				var listItemView = new PlantWaterItemView({
+					model: plant
+				});
+				return listItemView;
 			});
-			return listItemView;
-		});
 
-		this.childViews.forEach(function (view) {
-			view.model.getHealth(function (health) {
-				if (health < 80) {
-					// Only show if at least one of the models is less than
-					// the water threshold.
-					view.render();
-					_this.$el.append(view.$el);
-				}
+			_this.childViews.forEach(function (view) {
+				view.render();
+				_this.$el.append(view.$el);
 			});
 		});
 	},
@@ -52,11 +48,9 @@ module.exports = Backbone.View.extend({
 	},
 
 	onWaterAllClick: function () {
-		this.collection.forEach(function (model) {
-			model.getHealth(function (health) {
-				if (health < 80) {
-					model.water();
-				}
+		this.collection.getUnwateredPlants(function (plants) {
+			plants.forEach(function (plantModel) {
+				plantModel.water();
 			});
 		});
 		this.render();
