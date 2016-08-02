@@ -75,6 +75,10 @@ var PlantListItemView = Backbone.View.extend({
 					_this.$('.health').addClass('yellow');
 				}
 			});
+
+			// if (this.$('.front').height() > this.$('.back').height()) {
+			// 	this.$('.back').height = this.$('.front').height;
+			// }
 		}
 	},
 

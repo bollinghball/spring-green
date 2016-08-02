@@ -291,7 +291,7 @@ function getHealth (plant, callback) {
 function sendMessage (plant) {
     console.log('Sending message to ' + plant.userId);
     var userId = plant.userId;
-    var user = db.get('users').find({ id: userId }).value();
+    var client = db.get('users').find({ id: userId }).value();
     var phone = user.phone;
 
     // TODO: Use twilio to send phone notification
@@ -322,10 +322,14 @@ setInterval(function () {
 
     plants.forEach(function (plant) {
         getHealth(plant, function (health) {
-            if (health < 40 && !plant.messageSent) {
+            if (health < 80 && !plant.messageSent) {
                 sendMessage(plant);
-                plant.messageSent = true;
+                db
+                    .get('plants')
+                    .find({ id: plant.id })
+                    .assign({ messageSent: true })
+                    .value();
             }
         });
     });
-}, 3600000)
+}, 6000)

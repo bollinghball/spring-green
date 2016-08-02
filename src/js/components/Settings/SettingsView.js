@@ -10,7 +10,8 @@ module.exports = Backbone.View.extend({
 		'keyup': 'onChange',
 		'mouseup': 'onChange',
 		'click .go-back': 'onGoBackClick',
-		'click .delete-account': 'onDeleteClick'
+		'click .delete-account': 'onDeleteClick',
+		'click .save': 'onSaveClick'
 	},
 
 	initialize: function (options) {
@@ -71,6 +72,7 @@ module.exports = Backbone.View.extend({
 				<option value="10pm">10:00 pm</option>
 				<option value="11pm">11:00 pm</option>
 			</select>
+			<button class="save">Save</button>
 			<button class="delete-account">Delete Account</button>
 		`;
 	},
@@ -92,6 +94,10 @@ module.exports = Backbone.View.extend({
 	onDeleteClick: function () {
 		this.model.destroy();
 		Backbone.history.navigate('logout', { trigger: true });
+	},
+
+	onSaveClick: function () {
+		Backbone.history.navigate('home', { trigger: true });
 	}
 
 });
