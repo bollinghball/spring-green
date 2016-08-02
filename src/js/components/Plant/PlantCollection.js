@@ -29,7 +29,7 @@ module.exports = Backbone.Collection.extend({
 			plantModel.getHealth(function (health) {
 				count++;
 
-				if (health < 40) {
+				if (health < 80) {
 					results.push(plantModel);
 				}
 
