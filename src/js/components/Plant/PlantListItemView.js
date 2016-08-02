@@ -2,6 +2,7 @@ var Backbone = require('backbone');
 var moment = require('moment');
 var PlantModel = require('./PlantModel');
 var PlantDBModel = require('./PlantDBModel');
+var $ = require('jquery');
 
 var PlantListItemView = Backbone.View.extend({
 
@@ -12,6 +13,7 @@ var PlantListItemView = Backbone.View.extend({
 		'click .save': 'onSaveClick',
 		'click .delete': 'onDeleteClick',
 		'click .flip': 'onFlipClick',
+		'keyup :input': 'logKey'
 	},
 
 	initialize: function () {
@@ -27,18 +29,34 @@ var PlantListItemView = Backbone.View.extend({
 
 		if (this.editMode) {
 			data = {
-				name: this.model.get('name')
+				name: this.model.get('name'),
+				timeLastWatered: moment(this.model.get('timeLastWatered')).fromNow(),
+				img: this.model.getImage()
 			};
 			this.$el.html(this.editTemplate(data));
-		} else {
-			data = {
-				name: this.model.get('name'),
-				commonName: this.model.plantDBModel.get('Common_Name'),
-				timeLastWatered: moment(this.model.get('timeLastWatered')).fromNow(),
-				scientificName: this.model.plantDBModel.get('Scientific_Name_x'),
-				Duration: this.model.plantDBModel.get('Duration'),
-				activePeriod: this.model.plantDBModel.get('Active_Growth_Period'),
-				img: this.model.getImage()
+			this.model.getHealth(function (health) {
+				_this.$('.health').css('width', health + '%');
+				// if the health is ...
+				if(health < 40) {
+					_this.$('.health-description').text('Very Poor Condition');
+					_this.$('.health').addClass('red');
+				} else if(health > 80) {
+					_this.$('.health-description').text('Healthy');
+					_this.$('.health').addClass('green');
+				} else {
+					_this.$('.health-description').text('Needs Attention Soon');
+					_this.$('.health').addClass('yellow');
+				}
+			});
+			} else {
+				data = {
+					name: this.model.get('name'),
+					commonName: this.model.plantDBModel.get('Common_Name'),
+					timeLastWatered: moment(this.model.get('timeLastWatered')).fromNow(),
+					scientificName: this.model.plantDBModel.get('Scientific_Name_x'),
+					Duration: this.model.plantDBModel.get('Duration'),
+					activePeriod: this.model.plantDBModel.get('Active_Growth_Period'),
+					img: this.model.getImage()
 			};
 		
 			this.$el.html(this.template(data));
@@ -107,10 +125,28 @@ var PlantListItemView = Backbone.View.extend({
 
 	editTemplate: function (data) {
 		return `
-			<label for="name">Name:</label>
-			<input class="name" type="text" value="${data.name}">
-			<button class="save">Save</button>
-			<button class="delete">Delete</button>
+			<button class="delete">X</button>
+			<div class="card">
+				<div class="front">
+					<div class="detail-img">
+						<img src="${data.img}">
+					</div>
+					<div class="plant-info">
+						<label for="name">Name</label>
+						<input id="name" type="text" value="${data.name}">
+					</div>
+					<div class="plant-info">
+						<h5 class="plant-title">Health Status</h5> 
+						<h4 class="plant-value health-description"></h4>
+					</div>
+					<div class="health-status-region">
+						<div class="health"></div>
+					</div>
+					<div class="last-watered">Last Watered ${data.timeLastWatered}</div>
+					<button class="save">Save</button>
+				</div>
+			</div>
+			
 		`;
 	},
 
@@ -121,7 +157,7 @@ var PlantListItemView = Backbone.View.extend({
 
 	onSaveClick: function () {
 		this.model.save({
-			name: this.$('.name').val()
+			name: this.$('#name').val()
 		});
 
 		this.editMode = false;
@@ -135,7 +171,15 @@ var PlantListItemView = Backbone.View.extend({
 
 	onFlipClick: function () {
 		this.$('.card').toggleClass('flipped');
-	}
+	},
+
+	logKey: function () {
+        $("#name").keyup(function(event){
+            if(event.keyCode == 13){
+                $(".save").click();
+            }
+        });
+    }
 
 });
 

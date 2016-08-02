@@ -6,6 +6,11 @@ module.exports = Backbone.View.extend({
 
 	className: 'cf',
 
+	events: {
+		'click #downarrow': 'onSettingsClick',
+		'click #downarrow.showing-settings': 'onSettingsClickAgain'
+	},
+
 	initialize: function () {
 		this.render = this.render.bind(this);
 		this.listenTo(this.model, 'sync change', this.render);
@@ -18,8 +23,9 @@ module.exports = Backbone.View.extend({
 
 		if (this.model.loggedIn) {
 			this.$el.html(this.template(data));
+			this.$el.show();
 		} else {
-			this.$el.html(this.noAuthTemplate());
+			this.$el.hide();
 		}
 	},
 
@@ -31,8 +37,8 @@ module.exports = Backbone.View.extend({
 			<div class="account">
 				<img src="assets/images/loginicon.svg">
 				<span>Hi, ${data.username}</span>
-				<button id="downarrow"></button>
-				<div class="account-options">
+				<button id="downarrow"><img src="assets/images/downarrow.png"></button>
+				<div class="account-options inactive">
 					<ul>
 						<li>
 							<a href="#/settings">Settings</a>
@@ -45,13 +51,22 @@ module.exports = Backbone.View.extend({
 		`;
 	},
 
-	noAuthTemplate: function () {
-		return `
-			<h1>Spring Green</h1>
-			<nav>
-				<a href="#/login">Log in</a>
-			</nav>
-		`;
+	showSettings: function () {
+		this.$('.account-options').removeClass('inactive');
+		this.$('#downarrow').addClass('showing-settings');
+	},
+
+	hideSettings: function () {
+		this.$('.account-options').addClass('inactive');
+		this.$('#downarrow').removeClass('showing-settings');
+	},
+
+	onSettingsClick: function () {
+		this.showSettings();
+	},
+
+	onSettingsClickAgain: function () {
+		this.hideSettings();
 	}
 
 });

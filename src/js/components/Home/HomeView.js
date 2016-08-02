@@ -45,9 +45,29 @@ module.exports = Backbone.View.extend({
 		`;
 	},
 
+	noPlantsTemplate: function () {
+		return `
+			<div class="plant-water-region"></div>
+			<div class="plant-list-region">
+				<div class="plant-header cf">
+					<h3>My Plants</h3>
+					<h3> Click add a plant, to get started!</h3>
+					<button class="add-plant-button">Add A Plant</button>
+				</div>
+			</div>
+		`;
+	},
+
 	handleButtonClick: function () {
 		// TODO: Redirect to /plants/create
 		Backbone.history.navigate('plants/create', {trigger: true});
+	},
+
+	noPlants: function (plants) {
+		var plants = plants.model
+		if (plants.length === 0) {
+			this.$el.html(this.noPlantsTemplate());
+		}
 	}
 
 });

@@ -21,6 +21,10 @@ body {
 
 button {
 	font-family: 'Didact Gothic';
+
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 div {
@@ -48,25 +52,40 @@ header {
 
 		> img {
 			width: 12%;
+			max-width: 23px;
+		}
+
+		span {
+			color: $orange;
+			font-size: 16px;
 		}
 		
 	}
 
 	.account-options {
+
+		position: absolute;
+		right: 5px;
+		background-color: white;
+		border-radius: 4px;
+		border: 1px solid black;
+
 		ul {
 			padding: 0;
 			margin: 0;
 			list-style-type: none;
+
+			li {
+				padding: 10px;
+			}
 		}
 	}
+
 }
 
 #downarrow {
-    width: 0px;
-    height: 0px;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #2f2f2f;
+	border: none;
+	background: none;
 }
 
 .page-region {
@@ -201,7 +220,6 @@ header {
 	background-color: #E8FFEA;
 }
 
-
 .detail-img {
 	> img {
 		width: 100%;
@@ -221,6 +239,15 @@ header {
 
 .plant-info {
 	margin-bottom: 20px;
+
+	label {
+		display: block;
+		font-family: 'Ubuntu';
+		font-weight: 700;
+		text-transform: uppercase;
+		font-size: 12px;
+		margin-bottom: 5px;
+	}
 }
 
 .health-status-region {
@@ -239,12 +266,26 @@ header {
 	text-align: right;
 }
 
-.edit, .flip {
+.edit, .flip, .save {
 	background-color: $orange;
 	color: white;
 	border-radius: 4px;
 	border: none;
 	padding: 10px;
+}
+
+.delete {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 3;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	border: none;
+	color: white;
+	background: $orange;
 }
 
 .cf:after {

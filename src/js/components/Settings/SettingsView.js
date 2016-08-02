@@ -18,7 +18,6 @@ module.exports = Backbone.View.extend({
 	},
 
 	render: function () {
-		console.log(this.model.attributes);
 		var data = {
 			phone: this.model.get('phone'),
 			email: this.model.get('email'),
@@ -30,8 +29,8 @@ module.exports = Backbone.View.extend({
 
 	template: function (data) {
 		return `
-			<button class="go-back">My Plants</button>
-			<h3>Settings</h3>
+		<button class="go-back">My Plants</button>
+		<h3>Settings</h3>
 			<div class="phone">
 				<label for="phone">Phone Number</label>
 	            <input id="phone" type="text" name="phone" value="${data.phone}">
@@ -45,8 +44,35 @@ module.exports = Backbone.View.extend({
 	            <input id="email-button" type="checkbox" ${data.emailNotifications ? 'checked' : ''}>Email</input>
 	            <input id="phone-button" type="checkbox" ${data.phoneNotifications ? 'checked' : ''}>Phone</input>
 	        </div>
-	        <button class="delete-account">Delete Account</button>
-			`;
+            <h3>What time would you like to receive reminders?</h3>
+            <select name="time">
+				<option value="12am">12:00 am</option>
+				<option value="1am">1:00 am</option>
+				<option value="2am">2:00 am</option>
+				<option value="3am">3:00 am</option>
+				<option value="4am">4:00 am</option>
+				<option value="5am">5:00 am</option>
+				<option value="6am">6:00 am</option>
+				<option value="7am">7:00 am</option>
+				<option value="8am">8:00 am</option>
+				<option value="9am">9:00 am</option>
+				<option value="10am">10:00 am</option>
+				<option value="11am">11:00 am</option>
+				<option value="12pm">12:00 pm</option>
+				<option value="1pm">1:00 pm</option>
+				<option value="2pm">2:00 pm</option>
+				<option value="3pm">3:00 pm</option>
+				<option value="4pm">4:00 pm</option>
+				<option value="5pm">5:00 pm</option>
+				<option value="6pm">6:00 pm</option>
+				<option value="7pm">7:00 pm</option>
+				<option value="8pm">8:00 pm</option>
+				<option value="9pm">9:00 pm</option>
+				<option value="10pm">10:00 pm</option>
+				<option value="11pm">11:00 pm</option>
+			</select>
+			<button class="delete-account">Delete Account</button>
+		`;
 	},
 
 	onGoBackClick: function () {
@@ -60,7 +86,6 @@ module.exports = Backbone.View.extend({
 			emailNotifications: this.$el.find('#email-button').is(':checked'),
 			phoneNotifications: this.$el.find('#phone-button').is(':checked')
 		});
-		console.log(this.model);
 		this.model.save();
 	}, 500),
 
