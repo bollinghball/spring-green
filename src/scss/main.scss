@@ -3,6 +3,8 @@ $orange: #f04e26;
 $green: #9dd285;
 $main-background: #e8f0ec;
 
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,700|Didact+Gothic);
+
 
 .app {
 	width: 100%;
@@ -13,11 +15,17 @@ $main-background: #e8f0ec;
 body {
 	background: #999;
 	margin:0;
-	font-family: 'Source Sans Pro';
+}
+
+div {
+	font-family: 'Didact Gothic';
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Ubuntu';
 }
 
 header {
-			width: 100%;
 			border-bottom: 2px solid #262322;
 			background-color: white;
 			padding: 10px;
@@ -30,11 +38,20 @@ header {
 	}
 
 	.account {
+		text-align: right;
 
 		> img {
 			width: 12%;
 		}
 		
+	}
+
+	.account-options {
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+		}
 	}
 }
 
@@ -48,16 +65,80 @@ header {
 
 .page-region {
 	background-color: $blue;
+	padding: 1px;
+	min-height: 800px;
 }
 
-.plant-list-region {
+.plant-list-region, .add-plant {
 	background-color: $main-background;
 	padding-top: 1px;
+	min-height: 800px;
 }
 
-.plant-header > h3 {
-	margin-left: 10px;
-	font-size: 36px;
+.plant-water-region {
+	box-sizing: border-box;
+	padding: 10px;
+
+	h2 {
+		font-size: 36px;
+		font-weight: 300;
+		margin: 20px 0;
+	}
+}
+
+.water, .water-all {
+	border: none;
+	color: white;
+	padding: 5px 15px;
+	background-color: $orange;
+	border-radius: 4px;
+	float:right;
+	margin: 20px 0;
+	box-sizing: border-box;
+	width: 30%;
+	max-width: 83px;
+
+}
+
+.water-plant {
+	border-bottom: 1px solid #E8FFEA;
+	clear: both;
+}
+
+.water-plant > h3 {
+	display: block;
+	float: left;
+	width: 70%;
+	font-family: 'Didact Gothic';
+	font-size: 20px;
+}
+
+
+
+.plant-header {
+
+	box-sizing: border-box;
+	padding: 10px;
+
+	> h3 {
+		font-size: 36px;
+		margin: 20px 0;
+		font-weight: 300;
+		width: 70%;
+		float: left;
+	}
+
+	button {
+		float: right;
+		width: 30%;
+		margin: 30px 0;
+		box-sizing: border-box;
+		color: white;
+		background-color: $orange;
+		border-radius: 4px;
+		max-width: 100px;
+		border: none;
+	}
 }
 
 .container {
@@ -83,6 +164,11 @@ header {
 	color: black;
 	box-sizing: border-box;
 	padding: 10px;
+	background-color: white;
+}
+
+.card.front {
+	background-color: white;
 }
 
 .cf:after {
@@ -106,6 +192,33 @@ header {
 	}
 }
 
+@media(min-width: 700px) {
+	.plant-water-region {
+		width: 30%;
+		float: left;
+	}
+
+	.plant-list-region {
+		width: 70%;
+		float: left;
+	}
+
+}
+
+@media (min-width: 1000px) {
+	.container {
+		width: 33.3%;
+	}
+
+	.plant-water-region {
+		width: 25%;
+	}
+
+	.plant-list-region {
+		width: 75%;
+	}
+}
+
 
 @media (min-width: 1200px) {
 	header > .logo {
@@ -115,7 +228,6 @@ header {
 				max-width: 300px;
 
 	}	
-
 
 	.account {
 		float: right;

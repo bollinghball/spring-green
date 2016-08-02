@@ -8,7 +8,7 @@ var PlantDBListItemView = require('./PlantDBListItemView');
 
 var PlantDBListView = Backbone.View.extend({
 
-	className: 'db-list',
+	className: 'db-list cf',
 
 	initialize: function () {
 		this.render = this.render.bind(this);

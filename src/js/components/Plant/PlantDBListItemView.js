@@ -6,6 +6,8 @@ var Backbone = require('backbone');
 
 var PlantDBListItemView = Backbone.View.extend({
 
+	className: 'container',
+
 	events: {
 		'click .add': 'handleClick'
 	},
@@ -21,13 +23,15 @@ var PlantDBListItemView = Backbone.View.extend({
 
 	template: function (data) {
 		return `
-			<div>Common Name: ${data.Common_Name}</div>
-			<div>Scientific Name: ${data.Scientific_Name_x}</div>
-			<div>Growth Rate: ${data.Growth_Rate}</div>
-			<div>Duration: ${data.Duration}</div>
-			<div>Active Growth Period: ${data.Active_Growth_Period}</div>
-			<div>Active Bloom Period: ${data.Bloom_Period}</di>
-			<button class="add">ADD</button>
+			<div class="card">
+				<div>Common Name: ${data.Common_Name}</div>
+				<div>Scientific Name: ${data.Scientific_Name_x}</div>
+				<div>Growth Rate: ${data.Growth_Rate}</div>
+				<div>Duration: ${data.Duration}</div>
+				<div>Active Growth Period: ${data.Active_Growth_Period}</div>
+				<div>Active Bloom Period: ${data.Bloom_Period}</di>
+				<button class="add">ADD</button>
+			</div>
 		`;
 	},
 
