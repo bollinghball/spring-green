@@ -96,7 +96,7 @@ var PlantListItemView = Backbone.View.extend({
 				<div class="health-status-region">
 					<div class="health"></div>
 				</div>
-				<div>Last Watered ${data.timeLastWatered}</div>
+				<div class="last-watered">Last Watered ${data.timeLastWatered}</div>
 				<button class="edit">Edit</button>
 				<button class="flip">Details</button>
 			</div>
@@ -125,21 +125,25 @@ var PlantListItemView = Backbone.View.extend({
 
 	editTemplate: function (data) {
 		return `
+			<button class="delete">X</button>
 			<div class="card">
 				<div class="front">
 					<div class="detail-img">
 						<img src="${data.img}">
 					</div>
-					<label for="name">Name:</label>
-					<input id="name" type="text" value="${data.name}">
-					<div>Last Watered ${data.timeLastWatered}</div>
-					<h3>Health Status: </h3>
-					<div class="health-description"></div>
+					<div class="plant-info">
+						<label for="name">Name</label>
+						<input id="name" type="text" value="${data.name}">
+					</div>
+					<div class="plant-info">
+						<h5 class="plant-title">Health Status</h5> 
+						<h4 class="plant-value health-description"></h4>
+					</div>
 					<div class="health-status-region">
 						<div class="health"></div>
 					</div>
+					<div class="last-watered">Last Watered ${data.timeLastWatered}</div>
 					<button class="save">Save</button>
-					<button class="delete">Delete</button>
 				</div>
 			</div>
 			

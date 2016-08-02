@@ -37,7 +37,7 @@ module.exports = Backbone.View.extend({
 			<div class="account">
 				<img src="assets/images/loginicon.svg">
 				<span>Hi, ${data.username}</span>
-				<button id="downarrow"></button>
+				<button id="downarrow"><img src="assets/images/downarrow.png"></button>
 				<div class="account-options inactive">
 					<ul>
 						<li>
