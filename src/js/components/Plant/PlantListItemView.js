@@ -71,8 +71,8 @@ var PlantListItemView = Backbone.View.extend({
 				<div>Name: ${data.name}</div>
 				<div>Last Watered ${data.timeLastWatered}</div>
 				<h3>Health Status: </h3>
+				<div class="health-description"></div>
 				<div class="health-status-region">
-					<div class="health-description"></div>
 					<div class="health"></div>
 				</div>
 				<button class="edit">Edit</button>
