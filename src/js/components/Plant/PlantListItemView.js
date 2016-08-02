@@ -38,8 +38,8 @@ var PlantListItemView = Backbone.View.extend({
 				timeLastWatered: moment(this.model.get('timeLastWatered')).fromNow(),
 				scientificName: this.model.plantDBModel.get('Scientific_Name_x'),
 				Duration: this.model.plantDBModel.get('Duration'),
-				activePeriod: this.model.plantDBModel.get('Active_Growth_Period')
-				// thumbnail: from a premade gallery
+				activePeriod: this.model.plantDBModel.get('Active_Growth_Period'),
+				img: this.model.getImage()
 			};
 		
 			this.$el.html(this.template(data));
@@ -66,7 +66,7 @@ var PlantListItemView = Backbone.View.extend({
 		<div class="card">
 			<div class="front">
 				<div class="detail-img">
-					<img src="${data.thumbail}">
+					<img src="${data.img}">
 				</div>
 				<div>Name: ${data.name}</div>
 				<div>Last Watered ${data.timeLastWatered}</div>

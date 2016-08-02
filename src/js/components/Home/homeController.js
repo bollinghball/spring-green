@@ -19,23 +19,28 @@ module.exports = {
 	},
 
 	showCreate: function () {
+		var _this = this;
 		var createView = new CreatePlantView();
 
 		createView.on('create', function (plantDBModel) {
 			// Create the plant
-			var plant = plants.create({
-				plantDBId: plantDBModel.get('id')
+			_this.createPlant(plantDBModel);
+			Backbone.history.navigate('home', { trigger: true});
+		});
+
+		Backbone.trigger('app:showView', createView);
+	},
+
+	createPlant: function (plantDBModel) {
+		var plant = plants.create({
+			plantDBId: plantDBModel.get('id'),
+			img: plantDBModel.get('img')
 				
 			}, {
 				success: function () {
 					plant.water();
 				}
 			});
-
-			Backbone.history.navigate('home', { trigger: true});
-		});
-
-		Backbone.trigger('app:showView', createView);
 	}
 
 };

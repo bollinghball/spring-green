@@ -40,7 +40,6 @@ module.exports = Backbone.Model.extend({
 
 	defaults: {
 		name: '',
-		image: '/images/1.png',
 		timeLastWatered: 0,
 		healthStatus: 100,
 		plantDBId: null,
@@ -75,6 +74,32 @@ module.exports = Backbone.Model.extend({
 	water: function () {
 		this.set('timeLastWatered', new Date().getTime());
 		this.save();
+	},
+
+	getImage: function () {
+		if (this.plantDBModel.get('SubClass') === 'Asteridae') {
+			return 'assets/images/asteridae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Alismatidae') {
+			return 'assets/images/alismatidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Arecidae') {
+			return 'assets/images/arecidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Caryophyllidae') {
+			return 'assets/images/caryophyllidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Commelinidae') {
+			return 'assets/images/commelinidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Dilleniidae') {
+			return 'assets/images/dilleniidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Hamamelidae') {
+			return 'assets/images/hamamelidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Liliidae') {
+			return 'assets/images/liliidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Magnoliidae') {
+			return 'assets/images/magnoliidae.png';
+		} else if (this.plantDBModel.get('SubClass') === 'Rosidae') {
+			return 'assets/images/rosidae.png';
+		} else {
+			return 'assets/images/generic.png';
+		}
 	}
 
 });
