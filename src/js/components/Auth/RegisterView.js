@@ -9,7 +9,8 @@ module.exports = Backbone.View.extend({
 
     events: {
         'click .register-button': 'onRegisterClick',
-        'keyup :input': 'logKey'
+        'keyup :input': 'logKey',
+        'click .back-button': 'handleBackClick'
     },
 
     render: function () {
@@ -19,6 +20,7 @@ module.exports = Backbone.View.extend({
     template: function () {
         return `
             <img src="images/logo.png">
+            <button class="back-button">Back</button>
             <h3>Register</h3>
             <label for="username">Username</label>
             <input id="username" type="text" name="username">
@@ -59,6 +61,10 @@ module.exports = Backbone.View.extend({
                 $(".register-button").click();
             }
         });
+    },
+
+    handleBackClick: function () {
+        window.history.back();
     }
 
 });

@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 var NavView = require('../Nav/NavView');
+var PlantWaterView = require('../Plant/PlantWaterView');
 
 module.exports = Backbone.View.extend({
 
@@ -13,12 +14,14 @@ module.exports = Backbone.View.extend({
             model: options.userModel
         });
         Backbone.on('app:showView', this.show.bind(this));
+        this.listenTo(this.model, 'change', this.render);
     },
 
     render: function () {
         this.$el.html(this.template());
         this.navView.render();
         this.$el.find('.nav-region').append(this.navView.el);
+        this.showWater();
     },
 
     template: function () {
@@ -38,6 +41,11 @@ module.exports = Backbone.View.extend({
         view.render();
         
         this.$('.page-region').append(view.el);
+    },
+
+    showWater: function () {
+
+        this.$('.app').addClass('visible');
     }
 
 });
