@@ -32,6 +32,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "superagent": "^2.1.0",
+    "twilio": "^2.9.1",
     "uuid": "^2.0.2"
   }
 }

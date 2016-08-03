@@ -245,17 +245,6 @@ app.listen(8000);
 
 // Check for plant healths in DB and send notifications
 
-function getMoistureUse (plant) {
-    var use = plant.Moisture_Use;
-    if (use === 'High') {
-        return 0.04;
-    } else if (use === 'Low') {
-        return 0.01;
-    } else {
-        return 0.02;
-    }
-}
-
 function getHealth (plant, callback) {
     var timeSinceLastWatering = (new Date().getTime() - plant.timeLastWatered) / 1000 / 60 / 60;
 
@@ -272,7 +261,7 @@ function getHealth (plant, callback) {
             
             response = JSON.parse(response.text);
             response = response.data[0];
-            moistureUse = getMoistureUse(response.Moisture_Use);
+            moistureUse = getMoistureUse(response);
 
             startDate = moment(plant.timeLastWatered).format('MMDD'); // 0726
             endDate = moment(new Date().getTime()).format('MMDD');
@@ -291,7 +280,7 @@ function getHealth (plant, callback) {
 function sendMessage (plant) {
     console.log('Sending message to ' + plant.userId);
     var userId = plant.userId;
-    var client = db.get('users').find({ id: userId }).value();
+    var user = db.get('users').find({ id: userId }).value();
     var phone = user.phone;
 
     // TODO: Use twilio to send phone notification
@@ -304,17 +293,29 @@ function sendMessage (plant) {
         // }, function(err, message) { 
         //     console.log(message.sid); 
         // });
-        var accountSid = 'ACc9c7cdcd6f86e2a7851ac1b9c52686e6';
-        var authToken = "46608c028aaeca0b2088beab1c07b480";
-        var client = require('twilio')(accountSid, authToken);
+    var accountSid = 'ACf6cd978c9975f85e36cac227309efe48';
+    // var accountSid = 'ACc9c7cdcd6f86e2a7851ac1b9c52686e6';
+    var authToken = '46608c028aaeca0b2088beab1c07b480';
+    // var authToken = '9acfa71ba14cd7bc274f3a9885e09450';
+    var client = require('twilio')(accountSid, authToken);
 
-        client.sms.messages.create({
-            body: "We're dying! Water Ussssss.",
-            to: "+18035284393",
-            from: "+15005550006"
-        }, function(err, sms) {
-            process.stdout.write(sms.sid);
-        });     
+    client.sms.messages.create({
+        body: "We're dying! Water Ussssss.",
+        to: "+18035284393",
+        from: "+18038324951"
+        // from: "+15005550006"
+    }, function(err, sms) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(sms.sid);
+            db
+                .get('plants')
+                .find({ id: plant.id })
+                .assign({ messageSent: true })
+                .value();
+        }
+    });
 }
 
 setInterval(function () {
@@ -322,14 +323,11 @@ setInterval(function () {
 
     plants.forEach(function (plant) {
         getHealth(plant, function (health) {
+            console.log(health, plant.messageSent);
             if (health < 80 && !plant.messageSent) {
+                console.log('sending a message');
                 sendMessage(plant);
-                db
-                    .get('plants')
-                    .find({ id: plant.id })
-                    .assign({ messageSent: true })
-                    .value();
             }
         });
     });
-}, 6000)
+}, 3600000)
