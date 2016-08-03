@@ -30,7 +30,7 @@ module.exports = Backbone.View.extend({
 
 	template: function (data) {
 		return `
-		<button class="go-back">My Plants</button>
+		<button class="go-back">< Back to My Plants</button>
 		<h3>Settings</h3>
 			<div class="phone">
 				<label for="phone">Phone Number</label>

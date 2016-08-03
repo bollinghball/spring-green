@@ -42,6 +42,10 @@ h1, h2, h3, h4, h5, h6 {
 
 button:focus {outline:0;}
 
+.destroy {
+	opacity: 0;
+}
+
 .nav-region {
 	height: 10vh;
 }
@@ -228,7 +232,7 @@ header {
 	height: 100%;
 	border-radius: 6px;
 	transform-style: preserve-3d;
-	transition: transform 1s;
+	transition: transform 1s opacity 1s;
 	-webkit-box-shadow: 0px 5px 9px 1px rgba(38,35,34,0.4);
 	-moz-box-shadow:    0px 5px 9px 1px rgba(38,35,34,0.4);
 	box-shadow:         0px 5px 9px 1px rgba(38,35,34,0.4);

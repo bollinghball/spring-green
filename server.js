@@ -248,11 +248,11 @@ app.listen(8000);
 function getMoistureUse (plant) {
     var use = plant.Moisture_Use;
     if (use === 'High') {
-        return 0.04;
+        return .04;
     } else if (use === 'Low') {
-        return 0.01;
+        return .01;
     } else {
-        return 0.02;
+        return .02;
     }
 }
 
@@ -291,7 +291,7 @@ function getHealth (plant, callback) {
 function sendMessage (plant) {
     console.log('Sending message to ' + plant.userId);
     var userId = plant.userId;
-    var client = db.get('users').find({ id: userId }).value();
+    var user = db.get('users').find({ id: userId }).value();
     var phone = user.phone;
 
     // TODO: Use twilio to send phone notification
