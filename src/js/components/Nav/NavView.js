@@ -31,6 +31,9 @@ module.exports = Backbone.View.extend({
 
 	template: function (data) {
 		return `
+			<div class="mobile-logo">
+				<img src="assets/images/mobilelogo.svg">
+			</div>
 			<div class="logo">
 				<img src="assets/images/springgreenlogo.svg">
 			</div>

@@ -3,6 +3,10 @@ $orange: #f04e26;
 $green: #9dd285;
 $main-background: #e8f0ec;
 
+@-ms-viewport{
+  width: device-width;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,700|Didact+Gothic);
 
 @import 'search.scss';
@@ -10,6 +14,10 @@ $main-background: #e8f0ec;
 
 *, *:before, *:after {
 	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
 }
 
 .app {
@@ -49,11 +57,69 @@ button:focus {outline:0;}
 
 .login {
 	position: fixed;
+	width: 100%;
 	top: 0;
-	right: 0;
 	bottom: 0;
-	left: 0;
-	background-color: #fff;
+	max-width: 1200px;
+	background-image: url('assets/images/login.png');
+	background-size: cover;
+	background-position: bottom;
+}
+
+.login > div {
+	width: 80%;
+	margin: 20px auto;
+
+	img {
+		width: 100%;
+		margin: 20px auto;
+	}
+
+	div {
+		margin-bottom: 20px;
+	}
+
+	input {
+		width: 100%;
+		height: 30px;
+
+	}
+
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0px 1000px white inset;
+		box-shadow: 0 0 0px 1000px white inset;
+		background-color: white !important;
+	}
+
+	label {
+		display: block;
+		font-size: 1.1em;
+		margin-bottom: 10px;
+	}
+
+	.login-button {
+		border: none;
+		background-color: $orange;
+		color: white;
+		border-radius: 4px;
+		width: 70%;
+		display: block;
+		padding: 10px 0;
+		font-size: 1.1em;
+		margin: 10px auto;
+	}
+
+	.register-button-login-view {
+		border: 2px solid $orange;
+		background: transparent;
+		color: $orange;
+		border-radius: 4px;
+		width: 70%;
+		display: block;
+		padding: 10px 0;
+		font-size: 1.1em;
+		margin: 10px auto;
+	}
 }
 
 header {
@@ -65,16 +131,15 @@ header {
 	min-height: 60px;
 	line-height: 10vh;
 
-	> .logo {
-		display: inline-block;
-		vertical-align: middle;
-		width: 70%;
-		max-width: 270px;
-		min-width: 220px;
-		img {
-			vertical-align: middle;
-    		margin-left: 1em;
-		}
+	> .mobile-logo {
+		position: absolute;
+		width:10%;
+		top: 5px;
+		left: 10px;
+	}
+
+	.logo {
+		display: none;
 	}
 
 	.account {
@@ -129,6 +194,11 @@ header {
 	background-color: $blue;
 	padding: 1px;
 	position: relative;
+}
+
+.page-title {
+	font-weight: 300;
+	font-size: 30px;
 }
 
 .plant-list-region {
@@ -216,7 +286,7 @@ header {
 .container {
 	position: relative;
 	perspective: 800px;
-	height: 400px;
+	height: 417px;
 	width: 100%;
 	padding: 10px;
 	float: left;
@@ -267,6 +337,7 @@ header {
 	box-sizing: border-box;
 	border-radius: 6px;
 	padding: 10px;
+	background-color: white;
 }
 
 .card .back {
@@ -329,11 +400,17 @@ header {
 	border: none;
 	padding: 10px;
 	width: 30%;
+	margin-top: 10px;
+}
+
+.back > .flip {
+	float: right;
 }
 
 .add {
 	display: block;
 	margin: 10px auto;
+	width: 50%;
 }
 
 .delete {
@@ -356,13 +433,28 @@ header {
 	clear: both;
 }
 
-@media(min-width: 400px) {
-	.container {
-		width: 50%;
+@media screen and (min-width: 420px) {
+	.mobile-logo {
+		display: none;
 	}
 
-	.logo {
-		float: left;
+	header .logo {
+		display: inline-block;
+		vertical-align: middle;
+		width: 70%;
+		max-width: 270px;
+		min-width: 220px;
+		position: absolute;
+		left: 10px;
+		
+		img {
+			vertical-align: middle;
+		}
+	}
+
+	.container {
+		width: 50%;
+		height:388px;
 	}
 
 	.account {
@@ -371,7 +463,8 @@ header {
 	}
 }
 
-@media(min-width: 700px) {
+@media screen and (min-width: 700px) {
+
 	.app {
 		position: relative;
 	}
@@ -405,12 +498,13 @@ header {
 	.plant-list-region.full {
 		.container {
 			width: 33.3%;
+			height: 376px;
 		}
 	}
 
 }
 
-@media (min-width: 1000px) {
+@media screen and (min-width: 1000px) {
 	.container {
 		width: 33.3%;
 	}

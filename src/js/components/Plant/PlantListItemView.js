@@ -126,6 +126,7 @@ var PlantListItemView = Backbone.View.extend({
 				<div class="plant-info">
 					<h5 class="plant-title">Active Bloom Period</h5> 
 					<h4 class="plant-value">${data.Bloom_Period}</h4>
+				</div>
 				<button class="flip">Health</button>
 			</div>
 		</div>
