@@ -3,6 +3,8 @@ window.expect = chai.expect;
 
 mocha.setup('bdd');
 
-require('./Plant/PlantModel.test');
+require('./Plant/PlantDBModel.test');
+
+
 
 mocha.run();
