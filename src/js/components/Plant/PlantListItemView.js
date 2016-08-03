@@ -93,7 +93,7 @@ var PlantListItemView = Backbone.View.extend({
 				</div>
 				<div class="plant-info">
 					<h5 class="plant-title">Name</h5> 
-					<h4 class="plant-value">${data.commonName}</h4>
+					<h4 class="plant-value">${data.name}</h4>
 				</div>
 				<div class="plant-info">
 					<h5 class="plant-title">Health Status</h5> 

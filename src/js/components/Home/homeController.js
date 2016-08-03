@@ -33,6 +33,7 @@ module.exports = {
 
 	createPlant: function (plantDBModel) {
 		var plant = plants.create({
+			name: plantDBModel.get('Common_Name'),
 			plantDBId: plantDBModel.get('id'),
 			img: plantDBModel.get('img')		
 		}, {
