@@ -185,7 +185,10 @@ header {
 
 			li {
 				padding: 10px;
-				color: $orange;
+
+				a {
+					color: $orange;
+				}
 			}
 		}
 	}
