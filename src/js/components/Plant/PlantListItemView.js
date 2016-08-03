@@ -56,6 +56,8 @@ var PlantListItemView = Backbone.View.extend({
 					scientificName: this.model.plantDBModel.get('Scientific_Name_x'),
 					Duration: this.model.plantDBModel.get('Duration'),
 					activePeriod: this.model.plantDBModel.get('Active_Growth_Period'),
+					Growth_Rate: this.model.plantDBModel.get('Growth_Rate'),
+					Bloom_Period: this.model.plantDBModel.get('Bloom_Period'),
 					img: this.model.getImage()
 			};
 		
@@ -91,7 +93,7 @@ var PlantListItemView = Backbone.View.extend({
 				</div>
 				<div class="plant-info">
 					<h5 class="plant-title">Name</h5> 
-					<h4 class="plant-value">${data.name}</h4>
+					<h4 class="plant-value">${data.commonName}</h4>
 				</div>
 				<div class="plant-info">
 					<h5 class="plant-title">Health Status</h5> 
@@ -114,13 +116,16 @@ var PlantListItemView = Backbone.View.extend({
 					<h4 class="plant-value">${data.scientificName}</h4>
 				</div>
 				<div class="plant-info">
+					<h5 class="plant-title">Growth Rate</h5> 
+					<h4 class="plant-value">${data.Growth_Rate}</h4>
+				</div>
+				<div class="plant-info">
 					<h5 class="plant-title">Duration</h5> 
 					<h4 class="plant-value">${data.Duration}</h4>
 				</div>
 				<div class="plant-info">
-					<h5 class="plant-title">Active Period</h5> 
-					<h4 class="plant-value">${data.activePeriod}</h4>
-				</div>
+					<h5 class="plant-title">Active Bloom Period</h5> 
+					<h4 class="plant-value">${data.Bloom_Period}</h4>
 				<button class="flip">Health</button>
 			</div>
 		</div>

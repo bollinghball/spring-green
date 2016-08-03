@@ -29,7 +29,7 @@ var PlantDBListItemView = Backbone.View.extend({
 				<div>Growth Rate: ${data.Growth_Rate}</div>
 				<div>Duration: ${data.Duration}</div>
 				<div>Active Growth Period: ${data.Active_Growth_Period}</div>
-				<div>Active Bloom Period: ${data.Bloom_Period}</di>
+				<div>Active Bloom Period: ${data.Bloom_Period}</div>
 				<button class="add">ADD</button>
 			</div>
 		`;
