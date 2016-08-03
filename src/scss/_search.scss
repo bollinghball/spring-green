@@ -1,10 +1,9 @@
 
 
-.add-plant {
+.add-plant, .settings-region {
 	background-color: $main-background;
 	padding: 20px;
 	min-height: 800px;
-	box-sizing: border-box;
 
 }
 
@@ -31,7 +30,6 @@
 	display: block;
 	color: white;
 	font-family: 'Didact Gothic';
-	box-sizing: border-box;
 	padding: 7px 0;
 	font-size: 16px;
 	border: none;
