@@ -9,7 +9,9 @@ module.exports = Backbone.Model.extend({
 		Duration: '',
 		Active_Growth_Period: '',
 		Scientific_Name_x: '',
-		SubClass: ''
+		SubClass: '',
+		Growth_Rate: '',
+		Bloom_Period: ''
 	},
 
 	url: function () {

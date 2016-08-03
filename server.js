@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 var weather = require('./src/js/components/API/weather');
 var plants = require('./src/js/components/API/plants');
+var plantUtils = require('./src/js/components/Plant/common');
 
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -245,16 +246,6 @@ app.listen(8000);
 
 // Check for plant healths in DB and send notifications
 
-function getMoistureUse (plant) {
-    var use = plant.Moisture_Use;
-    if (use === 'High') {
-        return .04;
-    } else if (use === 'Low') {
-        return .01;
-    } else {
-        return .02;
-    }
-}
 
 function getHealth (plant, callback) {
     var timeSinceLastWatering = (new Date().getTime() - plant.timeLastWatered) / 1000 / 60 / 60;
@@ -262,6 +253,7 @@ function getHealth (plant, callback) {
     superagent
         .get(plants.url() + '?id=' + plant.plantDBId)
         .end(function (err, response) {
+            var plant;
             var moistureUse;
             var startDate;
             var endDate;
@@ -270,9 +262,12 @@ function getHealth (plant, callback) {
                 throw err;
             }
             
+            // Parse the response.
             response = JSON.parse(response.text);
-            response = response.data[0];
-            moistureUse = getMoistureUse(response);
+            // Get the first plant.
+            plant = response.data[0];
+            // Get moisture use of the plant.
+            moistureUse = plantUtils.getMoistureUse(plant.Moisture_Use);
 
             startDate = moment(plant.timeLastWatered).format('MMDD'); // 0726
             endDate = moment(new Date().getTime()).format('MMDD');

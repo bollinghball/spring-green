@@ -34,6 +34,8 @@ var moment = require('moment');
 var Backbone = require('backbone');
 var weather = require('../API/weather');
 
+var plantUtils = require('./common');
+
 var PlantDBModel = require('./PlantDBModel');
 
 module.exports = Backbone.Model.extend({
@@ -66,7 +68,7 @@ module.exports = Backbone.Model.extend({
 
 	getHealth: function (callback) {
 		var timeSinceLastWatering = (new Date().getTime() - this.get('timeLastWatered')) / 1000 / 60 / 60;
-		var moistureUse = this.plantDBModel.getMoistureUse();
+		var moistureUse = plantUtils.getMoistureUse(this.plantDBModel.get('Moisture_Use'));
 
 		var startDate = moment(this.get('timeLastWatered')).format('MMDD'); // 0726
 		var endDate = moment(new Date().getTime()).format('MMDD');
@@ -100,7 +102,7 @@ module.exports = Backbone.Model.extend({
 			return 'assets/images/commelinidae.png';
 		} else if (this.plantDBModel.get('SubClass') === 'Dilleniidae') {
 			return 'assets/images/dilleniidae.png';
-		} else if (this.plantDBModel.get('SubClass') === 'Hamamelidae') {
+		} else if (this.plantDBModel.get('SubClass') === 'Hamamelididae') {
 			return 'assets/images/hamamelidae.png';
 		} else if (this.plantDBModel.get('SubClass') === 'Liliidae') {
 			return 'assets/images/liliidae.png';

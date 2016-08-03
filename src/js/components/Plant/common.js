@@ -1,8 +1,7 @@
-function getMoistureUse (plant) {
-    var use = plant.Moisture_Use;
-    if (use === 'High') {
+function getMoistureUse (indicator) {
+    if (indicator === 'High') {
         return 18;
-    } else if (use === 'Low') {
+    } else if (indicator === 'Low') {
         return 0.01;
     } else {
         return 0.02;
