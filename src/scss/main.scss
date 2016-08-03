@@ -20,7 +20,7 @@ $main-background: #e8f0ec;
 }
 
 body {
-	background: #999;
+	background-image: url('assets/images/option2.png');
 	margin:0;
 }
 
@@ -233,7 +233,6 @@ header {
 	-webkit-box-shadow: 0px 5px 9px 1px rgba(38,35,34,0.4);
 	-moz-box-shadow:    0px 5px 9px 1px rgba(38,35,34,0.4);
 	box-shadow:         0px 5px 9px 1px rgba(38,35,34,0.4);
-	background-color: white;
 	}
 
 .card-search {
