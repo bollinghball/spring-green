@@ -170,8 +170,10 @@ var PlantListItemView = Backbone.View.extend({
 	},
 
 	onDeleteClick: function () {
-		this.$('.card').addClass('destroy');
-		this.model.destroy();
+		var _this = this;
+		this.$('.card').fadeOut(1200, function () {
+			_this.model.destroy();
+		});
 	},
 
 	onFlipClick: function () {

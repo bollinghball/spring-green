@@ -27,7 +27,9 @@ module.exports = Backbone.View.extend({
 
 	template: function () {
 		return `
-			<button class="back-button">My Plants</button>
+			<button class="back-button">< Back to My Plants</button>
+			<h3 class="page-title">Add A Plant</h3>
+			<p class="search-instructions">Get started adding a plant to your collection by searching for a plant below.</p>
 			<div class="search-region"></div>
 		`;
 	},

@@ -40,7 +40,7 @@ module.exports = Backbone.View.extend({
 	            <label for="email">Email Address</label>
 	            <input id="email" type="text" name="email" value="${data.email}">
 	        </div>
-	        <div class="reminders">
+	        <div class="reminder">
 	            <div class="reminders">How would you like to receive reminders to water your plants?</div>
 	            <input id="email-button" type="checkbox" ${data.emailNotifications ? 'checked' : ''}>Email</input>
 	            <input id="phone-button" type="checkbox" ${data.phoneNotifications ? 'checked' : ''}>Phone</input>

@@ -23,7 +23,7 @@ var PlantDBListItemView = Backbone.View.extend({
 
 	template: function (data) {
 		return `
-			<div class="card">
+			<div class="card-search">
 				<div>Common Name: ${data.Common_Name}</div>
 				<div>Scientific Name: ${data.Scientific_Name_x}</div>
 				<div>Growth Rate: ${data.Growth_Rate}</div>
