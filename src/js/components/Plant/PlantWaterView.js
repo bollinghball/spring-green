@@ -42,7 +42,7 @@ module.exports = Backbone.View.extend({
 
 	template: function (data) {
 		return `
-			<h2>Watering Schedule</h2>
+			<h2>Water Schedule</h2>
 			<button class="water-all">Water All</button>
 		`;
 	},

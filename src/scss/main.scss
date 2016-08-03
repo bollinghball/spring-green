@@ -9,8 +9,8 @@ $main-background: #e8f0ec;
 
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,700|Didact+Gothic);
 
-@import 'search.scss';
-@import 'settings.scss';
+@import 'search';
+@import 'settings';
 
 *, *:before, *:after {
 	box-sizing: border-box;
@@ -72,7 +72,9 @@ button:focus {outline:0;}
 
 	img {
 		width: 100%;
+		display: block;
 		margin: 20px auto;
+		max-width: 411px;
 	}
 
 	div {
@@ -97,7 +99,7 @@ button:focus {outline:0;}
 		margin-bottom: 10px;
 	}
 
-	.login-button {
+	.login-button, .register-button {
 		border: none;
 		background-color: $orange;
 		color: white;
@@ -109,7 +111,7 @@ button:focus {outline:0;}
 		margin: 10px auto;
 	}
 
-	.register-button-login-view {
+	.register-button-login-view, .register-back-button {
 		border: 2px solid $orange;
 		background: transparent;
 		color: $orange;
@@ -166,6 +168,15 @@ header {
 		border-radius: 4px;
 		border: 1px solid black;
 		line-height: 1.5em;
+		width: 150px;
+		visibility: visible;
+		opacity: 1;
+		transition: opacity 0.5s;
+
+		&.inactive {
+			visibility: hidden;
+			opacity: 0;
+		}
 
 		ul {
 			padding: 0;
@@ -174,10 +185,71 @@ header {
 
 			li {
 				padding: 10px;
+				color: $orange;
 			}
 		}
 	}
 
+}
+.water-list.visible {
+	display: block;
+	width: 100%;
+}
+
+error {
+	height: 10px;
+	width: 100%;
+}
+
+.reminders {
+	width: 100%;
+}
+
+.back {
+	display: block;
+	width: 100%;
+}
+
+.health {
+	width: 60%;
+	height: 30px;
+	display: inline-block;
+}
+
+.red {
+	background-color: red;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.green {
+	background-color: green;
+}
+
+h3.active {
+	display: none;
+}
+
+.health-description {
+	width: 100%;
+}
+
+.default-name.inactive {
+	display: none;
+}
+
+.new-plant-info.inactive {
+	display: none;
+}
+
+.default-plant-info.inactive {
+	display: none;
+}
+
+h3.hide {
+	display: none;
 }
 
 #downarrow {
@@ -194,6 +266,7 @@ header {
 	background-color: $blue;
 	padding: 1px;
 	position: relative;
+	height: 90vh;
 }
 
 .page-title {
@@ -220,9 +293,10 @@ header {
 	padding: 10px;
 
 	h2 {
-		font-size: 25px;
+		font-size: 30px;
 		font-weight: 300;
 		margin: 20px 0;
+		text-align: center;
 	}
 }
 
@@ -464,6 +538,39 @@ header {
 }
 
 @media screen and (min-width: 700px) {
+
+.login > div {
+	text-align: center;
+
+	div {
+		margin-bottom: 20px;
+	}
+
+	input {
+		width: 70%;
+		margin-left: 10px;
+		max-width: 484px;
+
+	}
+
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0px 1000px white inset;
+		box-shadow: 0 0 0px 1000px white inset;
+		background-color: white !important;
+	}
+
+	label {
+		display: inline-block;
+		font-size: 1.1em;
+	}
+
+	.login-button, .register-button-login-view, .register-button, .register-back-button {
+		width: 40%;
+		display: inline-block;
+		margin: 20px 10px;
+		max-width: 224px
+	}
+}
 
 	.app {
 		position: relative;
