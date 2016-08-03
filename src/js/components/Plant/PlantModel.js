@@ -41,7 +41,7 @@ var PlantDBModel = require('./PlantDBModel');
 module.exports = Backbone.Model.extend({
 
 	defaults: {
-		name: 'Click Edit to give your plant a name!',
+		name: '',
 		timeLastWatered: 0,
 		healthStatus: 100,
 		plantDBId: null,
