@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cp node_modules/normalize.css/normalize.css lib/_normalize.css",
+    "postinstall": "cp node_modules/normalize.css/normalize.css lib/_normalize.css && npm run build:css && npm run build:js",
     "watch:css": "sass --watch src/scss:build",
     "build:js": "browserify src/js/main.js -o  build/main.js",
     "watch:js": "watchify src/js/main.js -o build/main.js",
