@@ -45,7 +45,7 @@ module.exports = Backbone.View.extend({
 	            <input id="email-button" type="checkbox" ${data.emailNotifications ? 'checked' : ''}>Email</input>
 	            <input id="phone-button" type="checkbox" ${data.phoneNotifications ? 'checked' : ''}>Phone</input>
 	        </div>
-            <h3>What time would you like to receive reminders?</h3>
+            <h3 class="what-time">What time would you like to receive reminders?</h3>
             <select name="time">
 				<option value="12am">12:00 am</option>
 				<option value="1am">1:00 am</option>

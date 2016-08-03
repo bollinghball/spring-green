@@ -10,7 +10,7 @@ module.exports = Backbone.View.extend({
     events: {
         'click .register-button': 'onRegisterClick',
         'keyup :input': 'logKey',
-        'click .back-button': 'handleBackClick'
+        'click .register-back-button': 'handleBackClick'
     },
 
     render: function () {
@@ -19,27 +19,29 @@ module.exports = Backbone.View.extend({
 
     template: function () {
         return `
-            <img src="images/logo.png">
-            <button class="back-button">Back</button>
-            <h3>Register</h3>
-            <div class="username">
-                <label for="username">Username</label>
-                <input id="username" type="text" name="username">
+            <div>
+                <img src="assets/images/springgreenlogo.svg">
+                <div class="username">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username">
+                </div>
+                <div class="password">
+                    <label for="password">Password</label>
+                    <input id="password" type="text" name="password">
+                </div>
+                <div class="phone">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" type="text" name="phone">
+                </div>
+                <div class="email">
+                    <label for="email">Email Address</label>
+                    <input id="email" type="text" name="email">
+                </div>
+                <div id="error"></div>
+                <button class="register-button">Register</button>
+                <button class="register-back-button">Back</button>
             </div>
-            <div class="password">
-                <label for="password">Password</label>
-                <input id="password" type="text" name="password">
-            </div>
-            <div class="phone">
-                <label for="phone">Phone Number</label>
-                <input id="phone" type="text" name="phone">
-            </div>
-            <div class="email">
-                <label for="email">Email Address</label>
-                <input id="email" type="text" name="email">
-            </div>
-            <div id="error"></div>
-            <button class="register-button">Register</button>
+            
         `;
     },
 
