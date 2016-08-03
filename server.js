@@ -244,6 +244,9 @@ app.delete('/users/:userId/plants/:plantId', function (req, res) {
 
 app.listen(8000);
 
+// Check for plant healths in DB and send notifications
+
+
 function getHealth (plant, callback) {
     var timeSinceLastWatering = (new Date().getTime() - plant.timeLastWatered) / 1000 / 60 / 60;
 

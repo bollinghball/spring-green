@@ -175,6 +175,7 @@ var PlantListItemView = Backbone.View.extend({
 	},
 
 	onDeleteClick: function () {
+		this.$('.card').addClass('destroy');
 		this.model.destroy();
 	},
 

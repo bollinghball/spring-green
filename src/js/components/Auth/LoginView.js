@@ -18,14 +18,20 @@ module.exports = Backbone.View.extend({
     template: function () {
         return `
             <img src="images/logo.png">
-            <h3>Login</h3>
-            <label for="username">Username</label>
-            <input id="username" type="text" name="username">
-            <label for="password">Password</label>
-            <input id="password" type="text" name="password">
+            <h3 class="login">Login</h3>
+            <div class="username">
+                <label for="username">Username</label>
+                <input id="username" type="text" name="username">
+            </div>
+            <div class="password">
+                <label for="password">Password</label>
+                <input id="password" type="text" name="password">
+            </div>
             <div id="error"></div>
             <button class="login-button">Login</button>
-            <a href="#/register">Register</a>
+            <a href="#/register">
+                <button class="register-button-login-view">Register</button>
+            </a>
         `;
     },
 
