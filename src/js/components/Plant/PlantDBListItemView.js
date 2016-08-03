@@ -24,12 +24,26 @@ var PlantDBListItemView = Backbone.View.extend({
 	template: function (data) {
 		return `
 			<div class="card-search">
-				<div>Common Name: ${data.Common_Name}</div>
-				<div>Scientific Name: ${data.Scientific_Name_x}</div>
-				<div>Growth Rate: ${data.Growth_Rate}</div>
-				<div>Duration: ${data.Duration}</div>
-				<div>Active Growth Period: ${data.Active_Growth_Period}</div>
-				<div>Active Bloom Period: ${data.Bloom_Period}</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Common Name</h5> 
+					<h4 class="plant-value">${data.Common_Name}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Scientific Name</h5> 
+					<h4 class="plant-value">${data.Scientific_Name_x}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Growth Rate</h5> 
+					<h4 class="plant-value">${data.Growth_Rate}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Duration</h5> 
+					<h4 class="plant-value">${data.Duration}</h4>
+				</div>
+				<div class="plant-info">
+					<h5 class="plant-title">Active Bloom Period</h5> 
+					<h4 class="plant-value">${data.Bloom_Period}</h4>
+				</div>
 				<button class="add">ADD</button>
 			</div>
 		`;

@@ -17,21 +17,22 @@ module.exports = Backbone.View.extend({
 
     template: function () {
         return `
-            <img src="images/logo.png">
-            <h3 class="login-title">Login</h3>
-            <div class="username">
-                <label for="username">Username</label>
-                <input id="username" type="text" name="username">
+            <div>
+                <img src="assets/images/springgreenlogo.svg">
+                <div class="username">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username">
+                </div>
+                <div class="password">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password">
+                </div>
+                <div id="error"></div>
+                <button class="login-button">Login</button>
+                <a href="#/register">
+                    <button class="register-button-login-view">Register</button>
+                </a>
             </div>
-            <div class="password">
-                <label for="password">Password</label>
-                <input id="password" type="password" name="password">
-            </div>
-            <div id="error"></div>
-            <button class="login-button">Login</button>
-            <a href="#/register">
-                <button class="register-button-login-view">Register</button>
-            </a>
         `;
     },
 

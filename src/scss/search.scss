@@ -10,7 +10,7 @@
 
 .back-button {
 	font-family: 'Ubuntu';
-	font-size: 22px;
+	font-size: 18px;
 	background: transparent;
 	border: none;
 	color: $orange;
@@ -18,27 +18,48 @@
 
 }
 
-.search-region {
+.search-region input {
+	width: 100%;
+	height: 34.91px;
+
+}
+
+.search-region button.search {
+	background-color: $orange;
+	width: 60%;
+	margin: 10px auto;
+	display: block;
+	color: white;
+	font-family: 'Didact Gothic';
+	box-sizing: border-box;
+	padding: 7px 0;
+	font-size: 16px;
+	border: none;
+	vertical-align: middle;
+}
+
+@media screen and (min-width: 700px) {
+	.back-button {
+		font-size: 22px;
+	}
+
+	.search-region {
 	width: 70%;
 	margin: 20px auto;
 
 	input {
-		width: 82%;
-		height: 28.91px;
+		width: 70%;
+		height: 34.91px;
 		vertical-align: middle;
-		margin-left: 10px
+		margin-left: 10px;
 	}
 
 	button.search {
 		width: 14%;
-		background-color: $orange;
-		color: white;
-		font-family: 'Didact Gothic';
-		box-sizing: border-box;
-		padding: 7px 0;
-		font-size: 16px;
-		border: none;
-		vertical-align: middle;
+		display: inline-block;
 	}
+}
+
+
 }
 
