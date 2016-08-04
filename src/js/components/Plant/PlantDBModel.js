@@ -25,17 +25,6 @@ module.exports = Backbone.Model.extend({
 		}
 
 		return response.data[0];
-	},
-
-	getMoistureUse: function () {
-		var use = this.get('Moisture_Use');
-		if (use === 'High') {
-			return .04;
-		} else if (use === 'Low') {
-			return .01;
-		} else {
-			return .02;
-		}
 	}
 
 });

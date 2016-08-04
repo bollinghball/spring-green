@@ -5,11 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cp node_modules/normalize.css/normalize.css lib/_normalize.css",
+    "postinstall": "cp node_modules/normalize.css/normalize.css lib/_normalize.css && npm run build:css && npm run build:js",
+    "build:css": "sass src/scss/main.scss build/main.css",
     "watch:css": "sass --watch src/scss:build",
     "build:js": "browserify src/js/main.js -o  build/main.js",
+    "build:test": "browserify testing/src/main.js -o  testing/main.js",
     "watch:js": "watchify src/js/main.js -o build/main.js",
-    "dev": "npm start & npm run watch:js & npm run watch:css"
+    "watch:test": "watchify testing/src/main.js -o testing/main.js",
+    "dev": "npm start & npm run watch:js & npm run watch:css & npm run watch:test"
   },
   "author": "",
   "license": "ISC",
@@ -24,13 +27,16 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
     "cors": "^2.7.1",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
     "lodash": "^4.14.0",
     "lowdb": "^0.13.1",
+    "mocha": "^3.0.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "sinon": "^1.17.5",
     "superagent": "^2.1.0",
     "twilio": "^2.9.1",
     "uuid": "^2.0.2"

@@ -1,6 +1,6 @@
 function getMoistureUse (indicator) {
     if (indicator === 'High') {
-        return 18;
+        return 0.04;
     } else if (indicator === 'Low') {
         return 0.01;
     } else {
