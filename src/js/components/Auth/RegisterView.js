@@ -1,6 +1,6 @@
 var Backbone = require('backbone');
 var $ = require('jquery');
-var AppRouter = require('../App/AppRouter');
+
 var auth = require('./authController');
 
 module.exports = Backbone.View.extend({
@@ -27,7 +27,7 @@ module.exports = Backbone.View.extend({
                 </div>
                 <div class="password">
                     <label for="password">Password</label>
-                    <input id="password" type="password" name="password">
+                    <input id="password" type="text" name="password">
                 </div>
                 <div class="phone">
                     <label for="phone">Phone Number</label>

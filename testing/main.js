@@ -13634,6 +13634,12 @@ describe('PlantDBModel', function () {
 		expect(this.model.get('Bloom_Period')).to.equal('');
 	});
 
+	it('the value of the function `parse` property is .04', function () {
+		this.model.set('Moisture_Use', 'High');
+		expect(this.model.getMoistureUse()).to.equal(.04);
+	});	
+
+
 
 });
 
