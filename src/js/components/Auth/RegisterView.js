@@ -27,7 +27,7 @@ module.exports = Backbone.View.extend({
                 </div>
                 <div class="password">
                     <label for="password">Password</label>
-                    <input id="password" type="text" name="password">
+                    <input id="password" type="password" name="password">
                 </div>
                 <div class="phone">
                     <label for="phone">Phone Number</label>
