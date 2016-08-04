@@ -1,6 +1,6 @@
 var Backbone = require('backbone');
 var $ = require('jquery');
-
+var AppRouter = require('../App/AppRouter');
 var auth = require('./authController');
 
 module.exports = Backbone.View.extend({

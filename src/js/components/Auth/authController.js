@@ -47,11 +47,12 @@ module.exports = {
     },
 
     register: function (options) {
+        var _this = this;
         var model = new UserModel(options);
 
         model.save(null, {
             success: function () {
-                Backbone.history.navigate('login', { trigger: true });
+                _this.login(options);
             }
         });
     },
