@@ -1,11 +1,15 @@
 function getMoistureUse (indicator) {
+	var result;
+
     if (indicator === 'High') {
-        return 18;
+        result = 0.04;
     } else if (indicator === 'Low') {
-        return 0.01;
+        result = 0.01;
     } else {
-        return 18;
+        result = 0.02;
     }
+
+    return result * 300;
 }
 
 module.exports = {
