@@ -9,7 +9,6 @@ function getMoistureUse (indicator) {
         result = 0.02;
     }
 
-    return result * 300;
 }
 
 module.exports = {
